@@ -59,11 +59,8 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
-<<<<<<< HEAD
-    orm_adapter (0.4.0)
-=======
+    orm_adapter (0.5.0)
     pg (0.17.0)
->>>>>>> Updated Repositry to Use PG In production and to use rails12factor
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
