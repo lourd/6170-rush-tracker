@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -32,7 +29,19 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'devise' 
+group :production do
+  #Use Postgres in Production and Use Rails12Factor to preserve CSS on Heroku
+  gem 'rails_12factor'
+  gem 'pg'
+end
+
+group :development do
+  # Use sqlite3 as the development database for Active Record
+  gem 'sqlite3'
+end
+
+# Use Devise to automatically have Authentication
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
