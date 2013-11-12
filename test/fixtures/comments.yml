@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  brother_id: 1
+  rushee_id: 1
+  text: MyText
+
+two:
+  brother_id: 1
+  rushee_id: 1
+  text: MyText

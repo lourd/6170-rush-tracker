@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112233252) do
+ActiveRecord::Schema.define(version: 20131112233413) do
+
+  create_table "actions", force: true do |t|
+    t.integer  "brother_id"
+    t.integer  "rushee_id"
+    t.date     "date"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "approvals", force: true do |t|
+    t.integer  "brother_id"
+    t.integer  "rushee_id"
+    t.boolean  "vote"
+    t.boolean  "met"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attendances", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "rushee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "brothers", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -35,5 +60,40 @@ ActiveRecord::Schema.define(version: 20131112233252) do
 
   add_index "brothers", ["email"], name: "index_brothers_on_email", unique: true
   add_index "brothers", ["reset_password_token"], name: "index_brothers_on_reset_password_token", unique: true
+
+  create_table "comments", force: true do |t|
+    t.integer  "brother_id"
+    t.integer  "rushee_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rushees", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "cellphone"
+    t.string   "facebook_url"
+    t.string   "twitter_url"
+    t.string   "profile_picture_url"
+    t.string   "dorm"
+    t.string   "room_number"
+    t.string   "hometown"
+    t.string   "sports"
+    t.string   "frats_rushing"
+    t.integer  "primary_contact_id"
+    t.string   "action_status"
+    t.string   "bid_status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

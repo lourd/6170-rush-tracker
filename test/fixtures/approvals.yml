@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  brother_id: 1
+  rushee_id: 1
+  vote: false
+  met: false
+
+two:
+  brother_id: 1
+  rushee_id: 1
+  vote: false
+  met: false
