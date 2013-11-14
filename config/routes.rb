@@ -1,4 +1,8 @@
 Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
+  get "accounts/index"
+  get "accounts/detail"
+  get "accounts/verify"
+  get "accounts/invite"
   devise_for :brothers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
