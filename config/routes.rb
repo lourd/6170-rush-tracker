@@ -1,4 +1,5 @@
 Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
+  get "accounts/" => "accounts#index"
   get "accounts/index"
   get "accounts/detail"
   get "accounts/verify"

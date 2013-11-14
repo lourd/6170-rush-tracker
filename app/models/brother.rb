@@ -10,4 +10,14 @@ class Brother < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  # returns all verified brothers in a frat
+  def self.findAllByFraternityID fraternity_id
+    return self.where :fraternity_id => fraternity_id, :is_verified => true
+  end
+
+  # returns all unverified brothers in a frat
+  def self.findAllPendingByFraternityID fraternity_id
+    return self.where :fraternity_id => fraternity_id, :is_verified => false
+  end
 end
