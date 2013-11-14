@@ -1,6 +1,9 @@
 Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
+  get "events/new"
+  get "events/edit"
+  get "events/delete"
+  get "events/" => "events#index"
   get "accounts/" => "accounts#index"
-  get "accounts/index"
   get "accounts/detail"
   get "accounts/verify"
   get "accounts/invite"
