@@ -7,8 +7,4 @@ class Rushee < ActiveRecord::Base
 	has_many :comments
 	has_many :approvals
 
-	def self.findAllByFraternityID fraternity_id
-        return self.where :fraternity_id => fraternity_id
-    end
-
 end

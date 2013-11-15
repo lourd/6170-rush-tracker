@@ -1,4 +1,6 @@
 class Brother < ActiveRecord::Base
+
+  belongs_to  :fraternity
 	has_many :action_brothers
 	has_many :actions, through: :action_brothers
 	has_many :comments
