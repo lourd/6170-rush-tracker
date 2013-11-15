@@ -7,6 +7,7 @@ class RusheesController < ApplicationController
 	end
 
 	def new
+		@rushee = Rushee.new
 	end
 
 	def edit

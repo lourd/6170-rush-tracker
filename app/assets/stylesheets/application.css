@@ -10,8 +10,8 @@
  *
  *= require bootstrap
  *= require_tree .
- *= require_self
  *= require navbar
+ *= require_self
  */
 
 @screen-sm-min: 0px;
@@ -35,4 +35,8 @@
        url('../assets/varsity_regular-webfont.woff') format('woff'), 
        url('../assets/varsity_regular-webfont.ttf') format('truetype'), 
        url('../assets/varsity_regular-webfont.svg') format('svg');
+}
+
+body {
+	padding-top: 50px;
 }

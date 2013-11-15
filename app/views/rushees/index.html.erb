@@ -1,0 +1,20 @@
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Rushees
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @rushees.each do |rushee| %>
+		<tr>
+			<td><%= link_to rushee.name, rushee_path(rushee) %></td> 	
+		</tr>
+		<% end %>
+		<tr>
+			<td><%= link_to 'Add rushee', new_rushee_url %></td>
+		</tr>
+	</tbody>
+</table>

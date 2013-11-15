@@ -7,7 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= yield %>
 
 <% if current_brother %>
   
@@ -29,6 +28,8 @@
             <%#= link_to "log in", log_in_path %>
 
 </nav>
+
+<%= yield %>
 
 <% end %>
 
