@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115033948) do
+ActiveRecord::Schema.define(version: 20131115035724) do
 
   create_table "action_brothers", force: true do |t|
     t.integer  "action_id"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20131115033948) do
     t.string   "bid_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "fraternity_id"
   end
 
 end
