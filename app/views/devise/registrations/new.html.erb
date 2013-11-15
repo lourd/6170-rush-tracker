@@ -3,20 +3,18 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :firstname %><br />
-    <%= f.text_field :firstname, :autofocus => true %></div>
+  <div><%= f.text_field :firstname, :autofocus => true, placeholder: "First name" %></div>
 
-  <div><%= f.label :lastname %><br />
-    <%= f.text_field :lastname %></div> 
+  <div><%= f.text_field :lastname, placeholder: "Last name" %></div> 
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div><%= f.email_field :email, placeholder: "Email address" %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <div><%= f.password_field :password, placeholder: "Password" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <div><%= f.password_field :password_confirmation, placeholder: "Confirm password" %></div>
+
+  <%# Hard-coded to only support one fraternity  %>
+  <div><%= f.collection_select :fraternity_id, Fraternity.order(:name),:id,:name %></div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>
