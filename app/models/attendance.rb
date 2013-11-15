@@ -3,7 +3,6 @@ class Attendance < ActiveRecord::Base
 	belongs_to 	:rushee
 	belongs_to	:event
 
-	validates :event
-	validates :rushee, presence: true, :uniqueness => { :scope => :event} 
+	validates :event_id, presence: true, :uniqueness => { :scope => :rushee_id} 
 
 end
