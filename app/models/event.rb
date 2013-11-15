@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
 
+	belongs_to	:fraternity
 	has_many :attendances
 	has_many :rushees, through: :attendances
 
