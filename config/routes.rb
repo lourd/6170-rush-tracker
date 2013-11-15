@@ -1,4 +1,8 @@
 Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
+  
+  resources :rushees
+  resources :actions
+
   get "events/new"
   get "events/edit"
   get "events/delete"

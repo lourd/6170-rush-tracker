@@ -14,7 +14,7 @@
   <div><%= f.password_field :password_confirmation, placeholder: "Confirm password" %></div>
 
   <%# Hard-coded to only support one fraternity  %>
-  <div><%= f.collection_select :fraternity_id, Fraternity.order(:name),:id,:name %></div>
+  <div><%= f.hidden_field :fraternity_id, value: 1 %></div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

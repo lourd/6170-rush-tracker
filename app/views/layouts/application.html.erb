@@ -7,8 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <%= yield %>
+
+<% if current_brother %>
+  
+<nav class="navbar navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    
+  </div>
+    <a class="navbar-brand" <%= link_to "RUSHtracker", rushees_path %></a>
+          <ul class="nav navbar-nav navbar-right">
+            <li><p class="navbar-text"><%= current_brother.email %></p>
+            </li>
+            <li>
+            <p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>
+          </ul>
+          
+          
+            <%#= link_to "Log out", log_out_path %>
+            <%#= link_to "Sign up", sign_up_path %>
+            <%#= link_to "log in", log_in_path %>
+
+</nav>
+
+<% end %>
 
 </body>
 </html>
