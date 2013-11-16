@@ -9,7 +9,8 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   get "events/" => "events#index"
   get "accounts/" => "accounts#index"
   get "accounts/detail"
-  get "accounts/verify"
+  get "accounts/verify/:id" => "accounts#verify" 
+  get "accounts/deny/:id" => "accounts#deny" 
   get "accounts/invite"
   post "accounts/invite" => "accounts#processInvite"
 

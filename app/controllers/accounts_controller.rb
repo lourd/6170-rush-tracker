@@ -7,11 +7,27 @@ class AccountsController < ApplicationController
     @pending_bros = Brother.findAllPendingByFraternityID current_brother.fraternity_id   
   end
 
-  def detail
+  def detail 
   end
 
   def verify
-    @brothers = Brother.findAllPendingByFraternityID current_brother.fraternity_id
+    if ! current_brother.is_admin
+      redirect_to accounts_path
+      return
+    end
+
+    id = params[:id]
+    Brother.verify id
+  end
+
+  def deny
+    if ! current_brother.is_admin
+      redirect_to accounts_path
+      return
+    end
+    
+    id = params[:id]
+    Brother.destroy id 
   end
 
   def invite
