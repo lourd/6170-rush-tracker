@@ -17,9 +17,8 @@
     <a class="navbar-brand" <%= link_to "RUSHtracker", rushees_path %></a>
           <ul class="nav navbar-nav navbar-right">
             <% if current_brother %>
-            <li><p class="navbar-text"><%= current_brother.email %></p>
-            </li>
-            <li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>
+              <li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>
+              <li><p class="navbar-text"><%= link_to "Sign out", destroy_brother_session_path, :method => :delete %></p></li>
             <% end %>
           </ul>
           
