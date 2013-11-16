@@ -32,7 +32,7 @@ end
 group :production do
   #Use Postgres in Production and Use Rails12Factor to preserve CSS on Heroku
   gem 'rails_12factor'
-  # gem 'pg'
+  gem 'pg'
 end
 
 group :development do
