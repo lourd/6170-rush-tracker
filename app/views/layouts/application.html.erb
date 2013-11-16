@@ -8,18 +8,19 @@
 </head>
 <body>
 
-<% if current_brother %>
+
   
-<nav class="navbar navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-top" role="navigation">
   <div class="navbar-header">
     
   </div>
     <a class="navbar-brand" <%= link_to "RUSHtracker", rushees_path %></a>
           <ul class="nav navbar-nav navbar-right">
+            <% if current_brother %>
             <li><p class="navbar-text"><%= current_brother.email %></p>
             </li>
-            <li>
-            <p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>
+            <li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>
+            <% end %>
           </ul>
           
           
@@ -29,9 +30,10 @@
 
 </nav>
 
-<%= yield %>
+<div class="my-container">
+  <%= yield %>
+</div>
 
-<% end %>
 
 </body>
 </html>

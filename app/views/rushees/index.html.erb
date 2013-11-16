@@ -10,7 +10,7 @@
 	<tbody>
 		<% @rushees.each do |rushee| %>
 		<tr>
-			<td><%= link_to rushee.name, rushee_path(rushee) %></td> 	
+			<td><%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %></td> 	
 		</tr>
 		<% end %>
 		<tr>

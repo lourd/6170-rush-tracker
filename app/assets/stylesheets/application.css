@@ -12,6 +12,7 @@
  *= require_tree .
  *= require navbar
  *= require_self
+ *= require forms
  */
 
 @screen-sm-min: 0px;
@@ -37,6 +38,6 @@
        url('../assets/varsity_regular-webfont.svg') format('svg');
 }
 
-body {
-	padding-top: 50px;
+.my-container {
+	padding: 10px;
 }

@@ -1,3 +1,28 @@
 // Place all the styles related to the rushees controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1.rushee_name {
+	font-size: 40px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+h4.status {
+	color: gray;
+	font-size: 14px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#bid_status {
+	margin-top: 5px;
+}
+
+#picture-holder {
+	margin-top: 5px;
+	background-color: gray;
+	width: 300px;
+	height: 300px;
+	text-align: center;
+	line-height: 300px;
+}
