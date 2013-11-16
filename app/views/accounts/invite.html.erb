@@ -1,2 +1,13 @@
-<h1>Accounts#invite</h1>
-<p>Find me in app/views/accounts/invite.html.erb</p>
+<h1>Invite some Bros, man</h1>
+
+<%= form_for :brother do |f| %>
+  <div><%= f.text_field :firstname, :autofocus => true, placeholder: "First name" %></div>
+
+  <div><%= f.text_field :lastname, placeholder: "Last name" %></div> 
+
+  <div><%= f.email_field :email, placeholder: "Email address" %></div>
+
+  <div><%= f.submit "Invite" %></div>
+<% end %>
+
+

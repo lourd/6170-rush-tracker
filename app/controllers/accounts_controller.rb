@@ -15,5 +15,12 @@ class AccountsController < ApplicationController
   end
 
   def invite
+    # verify that we're an admin
+    if ! current_brother.is_admin
+      redirect_to accounts_path
+      return
+    end
+
+
   end
 end
