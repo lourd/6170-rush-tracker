@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap
+ *= require_tree .
+ *= require navbar
+ *= require_self
+ *= require forms
+ */
+
+$screen-sm-min: 0px;
+$screen-sm-min: 0px;
+$screen-md-min: 0px;
+$screen-lg-min: 0px;
+
+ @font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+       url('../assets/glyphicons-halflings-regular.woff') format('woff'), 
+       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'), 
+       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+ @font-face {
+  font-family: 'Varsity';
+  src: url('../assets/varsity_regular-webfont.eot');
+  src: url('../assets/varsity_regular-webfont.eot?#iefix') format('embedded-opentype'), 
+       url('../assets/varsity_regular-webfont.woff') format('woff'), 
+       url('../assets/varsity_regular-webfont.ttf') format('truetype'), 
+       url('../assets/varsity_regular-webfont.svg') format('svg');
+}
+
+.my-container {
+	padding: 10px;
+}
