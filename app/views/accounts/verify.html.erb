@@ -1,20 +1,2 @@
-<h1>Verify Pending Brother Accounts</h1>
+<h1>Verified!</h1>
 
-<% if @brothers.length > 0 %>
-  <table>
-
-    <tr>
-      <th>Name</th><th>Email</th><th>Rushees</th>
-    </tr>
-    <% @brothers.each do |brother| %>
-      <tr>
-        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td> </td>
-      </tr>
-
-      <% end %>
-
-
-  </table>
-<% else %>
-  <p>No pending brothers.</p>
-<% end %>

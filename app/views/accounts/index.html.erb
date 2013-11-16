@@ -1,10 +1,10 @@
 <h1>List of Brothers in Your Frat</h1>
 
 <% if @brothers.length > 0 %>
-  <table>
+  <table border="1px" width="100%">
 
     <tr>
-      <th>Name</th><th>Email</th><th>Rushees</th>
+      <td>Name</td><td>Email</td><td>Rushees</td>
     </tr>
     <% @brothers.each do |brother| %>
       <tr>
@@ -15,4 +15,23 @@
 
 
   </table>
+<% end %>
+
+
+<% if current_brother.is_admin and @pending_bros.length > 0 %>
+
+  <h2>Pending Brothers</h2>
+  <table border="1px" width="100%">
+    <tr>
+      <td>Name</td><td>Email</td><td>Accept?</td>
+    </tr>
+    <% @pending_bros.each do |brother| %>
+      <tr>
+        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td>
+          <a href="/accounts/verify/<%= brother.id %>">Y</a> <a href="/accounts/deny/<%= brother.id %>">N</a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
 <% end %>
