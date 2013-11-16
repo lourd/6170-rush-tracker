@@ -1,10 +1,22 @@
 Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
+  
+  resources :rushees
+  resources :actions
+
+  get "events/new"
+  get "events/edit"
+  get "events/delete"
+  get "events/" => "events#index"
+  get "accounts/" => "accounts#index"
+  get "accounts/detail"
+  get "accounts/verify"
+  get "accounts/invite"
   devise_for :brothers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root :to => "rushees#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

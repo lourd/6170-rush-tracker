@@ -1,0 +1,18 @@
+<h1>List of Brothers in Your Frat</h1>
+
+<% if @brothers.length > 0 %>
+  <table>
+
+    <tr>
+      <th>Name</th><th>Email</th><th>Rushees</th>
+    </tr>
+    <% @brothers.each do |brother| %>
+      <tr>
+        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td> </td>
+      </tr>
+
+      <% end %>
+
+
+  </table>
+<% end %>
