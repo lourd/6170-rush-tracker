@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   
   def index
     @brothers = Brother.findAllByFraternityID current_brother.fraternity_id
-  
+    @pending_bros = Brother.findAllPendingByFraternityID current_brother.fraternity_id   
   end
 
   def detail
