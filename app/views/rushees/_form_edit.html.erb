@@ -1,4 +1,5 @@
 <%= form_for @rushee, :html => {:class => "form-horizontal"} do |f| %>
+    <%= render 'shared/rushee_error_messages' %>
     <%= f.text_field :firstname, :class => 'form-control', :placeholder => "First name" %>
     <%= f.text_field :lastname, :class => 'form-control', :placeholder => "Last name" %>
     <%= f.text_field :email, :class => 'form-control', :placeholder => "Email address" %>
@@ -15,11 +16,7 @@
     <%= f.text_field :hometown, :class => 'form-control', :placeholder => "Hometown" %>
     <%= f.text_field :sports, :class => 'form-control', :placeholder => "Sports" %>
     <%= f.text_field :frats_rushing, :class => 'form-control', :placeholder => "Cross rushing with" %>
-    <% if @rushee.brother %>
-      <%= f.text_field :primary_contact_brother, :class => 'form-control', :value => @rushee.brother.email %>
-    <% else %>
-      <%= f.text_field :primary_contact_brother, :class => 'form-control', :placeholder => "Primary contact email" %>
-    <% end %>
+    <%= f.collection_select(:primary_contact_id, Brother.all, :id, :firstname, include_blank: true) %>
 
     
 
