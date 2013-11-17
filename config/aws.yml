@@ -1,6 +1,0 @@
-# Fill in your AWS Access Key ID and Secret Access Key
-# http://aws.amazon.com/security-credentials
-AWS.config({
-	access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-	secret_access_key: ENV['AWS_SECRET_ACCES_KEY']
-	})
