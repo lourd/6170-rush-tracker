@@ -42,3 +42,7 @@ $screen-lg-min: 0px;
 .my-container {
 	padding: 10px;
 }
+
+.comments-container {
+  padding: 10px;
+}
