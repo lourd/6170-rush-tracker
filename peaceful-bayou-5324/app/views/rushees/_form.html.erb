@@ -1,5 +1,4 @@
 <%= form_for @rushee, :html => {:class => "form-horizontal"} do |f| %>
-    <%# render 'shared/rushee_error_messages' %>
     <%= f.text_field :firstname, :class => 'form-control', :placeholder => "First name" %>
     <%= f.text_field :lastname, :class => 'form-control', :placeholder => "Last name" %>
     <%= f.text_field :email, :class => 'form-control', :placeholder => "Email address" %>
@@ -8,7 +7,7 @@
     <%= f.text_field :twitter_url, :class => 'form-control', :placeholder => "Twitter URL"%>
     <div class="form-group">
       <label for="profileFile">Profile Picture</label>
-      <%= f.file_field :profile_picture_url, :id => "profileFile" %>
+      <%= f.file_field :picture, :id => "profileFile" %>
       <p class="help-block">Upload a picture for them</p>
     </div>
     <%= f.text_field :dorm, :class => 'form-control', :placeholder => "Dorm"%>

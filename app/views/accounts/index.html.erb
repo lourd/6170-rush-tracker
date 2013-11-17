@@ -2,6 +2,16 @@
 
 <h1>Brothers Index of <%= current_brother.fraternity.name %></h1>
 
+
+<% if current_brother.is_admin %>
+<h3>Administrator Controls</h3>
+<ul>
+  <li><a href="/accounts/invite">Invite Brother</a></li>
+</ul>
+<% end %> 
+
+
+
 <table class="table" width="50%">
 <% if current_brother.is_admin and @pending_bros.length > 0 %>
     <tr>
@@ -31,13 +41,11 @@
     
     <% @brothers.each do |brother| %>
       <tr>
-        <td><a href="/accounts/detail/<%= brother.id %>"><%= brother.firstname %> <%= brother.lastname %></a></td><td><%= brother.email %></td><% if current_brother.is_admin %><td><a onclick="return confirm('Are you sure you want to delete <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>)?')" href="/accounts/deny/<%= brother.id %>">Yes</a></td><% end %>
+        <td><a href="/accounts/detail/<%= brother.id %>"><%= brother.firstname %> <%= brother.lastname %></a></td><td><%= brother.email %></td><% if current_brother.is_admin and current_brother.id != brother.id%><td><a onclick="return confirm('Are you sure you want to delete <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>)?')" href="/accounts/deny/<%= brother.id %>">Yes</a><% else %><td>N/A</td><% end %>
       </tr>
     <% end %>
     
 <% end %>
 
 </table>
-
-
 

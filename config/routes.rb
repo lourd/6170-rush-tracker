@@ -14,6 +14,7 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   get "accounts/deny/:id" => "accounts#deny" 
   get "accounts/invite"
   post "accounts/invite" => "accounts#processInvite"
+  get "rushees/edit" => "rushees#edit"
 
   devise_for :brothers
 
