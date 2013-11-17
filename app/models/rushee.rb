@@ -8,7 +8,11 @@ class Rushee < ActiveRecord::Base
 	has_many :comments
 	has_many :approvals
 
-	# attr_accessible :picture
+
+  validates :email, uniqueness: true, case_sensitive: false, allow_blank: true
+  validates :cellphone, uniqueness: true, allow_blank: true
+
+  attr_accessor :primary_contact_brother
 
   def self.findAllByPrimaryContactID id
     self.where :primary_contact_id => id
@@ -20,5 +24,6 @@ class Rushee < ActiveRecord::Base
     square: '200x200#',
     medium: '300x300>'
   }
+
 
 end
