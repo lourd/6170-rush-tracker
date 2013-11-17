@@ -9,6 +9,7 @@ class AccountsController < ApplicationController
 
   def detail
     @brother = Brother.find params[:id]
+    @rushees = Rushee.findAllByPrimaryContactID @brother.id
   end
 
   def verify
