@@ -21,7 +21,7 @@ class RusheesController < ApplicationController
 	    	if @rushee.save
 	    		redirect_to @rushee, notice: 'Rushee was successfully created.'
 	    	else
-	    		flash[:alert] = 'That email does not exist for a Brother'
+	    		flash[:alert] = 'Rushee was not successfully created'
 	    		render action: 'new'
 	    	end
 	    else
@@ -70,11 +70,10 @@ class RusheesController < ApplicationController
 			primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
 			if primary_contact
 				puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Primary Contact exists <<<<<<<<<<<<<<<<<<<<<<<<<<<'
-	    	@rushee.primary_contact_id = primary_contact.id
-	    	if @rushee.update(rushee_params)
+	    	if @rushee.update(rushee_params.merge(:primary_contact_id => primary_contact.id))
 	    		redirect_to @rushee, notice: 'Rushee was successfully updated.'
 	    	else
-	    		flash[:alert] = 'That email does not exist for a Brother'
+	    		flash[:alert] = 'Rushee was not successfully updated'
 	    		render action: 'edit'
 	    	end
 	    else
@@ -82,10 +81,12 @@ class RusheesController < ApplicationController
 	    	render action: 'edit'
 	    end
 	  else
-	  	if @rushee.update(rushee_params)
-	  		redirect_to @rushee, notice: 'Rushee was successfully created'
+	  	puts '>>>>>> No primary contact brother <<<<<<<'
+	  	if @rushee.update(rushee_params.merge(:primary_contact_id => nil))
+	  		puts '>>>>>>> We are here <<<<<<<<<<<'
+	  		redirect_to @rushee, notice: 'Rushee was successfully updated'
 	  	else
-	  		flash[:alert] = 'Rushee was not successfully created'
+	  		flash[:alert] = 'Rushee was not successfully updated'
 	    	render action: 'edit'
 	  	end
 	  end

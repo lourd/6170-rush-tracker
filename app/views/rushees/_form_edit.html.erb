@@ -16,10 +16,9 @@
     <%= f.text_field :sports, :class => 'form-control', :placeholder => "Sports" %>
     <%= f.text_field :frats_rushing, :class => 'form-control', :placeholder => "Cross rushing with" %>
     <% if @rushee.brother %>
-      <% :primary_contact_brother = @rushee.brother.email %>
-      <%= f.text_field :primary_contact_brother, :class => 'form-control' %>
+      <%= f.text_field :primary_contact_brother, :class => 'form-control', :value => @rushee.brother.email %>
     <% else %>
-      <%= f.text_field :primary_contact_brother, :class => 'form-control', :placeholder => "Primary contact brother" %>
+      <%= f.text_field :primary_contact_brother, :class => 'form-control', :placeholder => "Primary contact email" %>
     <% end %>
 
     
