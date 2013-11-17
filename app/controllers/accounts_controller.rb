@@ -18,6 +18,8 @@ class AccountsController < ApplicationController
 
     id = params[:id]
     Brother.verify id
+
+    redirect_to accounts_path
   end
 
   def deny
@@ -28,6 +30,8 @@ class AccountsController < ApplicationController
     
     id = params[:id]
     Brother.destroy id 
+
+    redirect_to accounts_path
   end
 
   def invite
