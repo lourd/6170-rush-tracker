@@ -1,7 +1,9 @@
 class RusheesController < ApplicationController
 
 	before_action :set_rushee, only: [:show, :edit, :update, :destroy]
+  layout 'application', except: :present
 	before_filter :authenticate_brother!
+  before_filter :is_verified!
 
 	def index
   		@rushees = current_brother.fraternity.rushees
@@ -13,32 +15,41 @@ class RusheesController < ApplicationController
 	end
 
 	def create
-
 		# Check if the email given for a brother is valid before saving
-		if rushee_params[:primary_contact_brother].present?
-			primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
-			if primary_contact
-	    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :primary_contact_id => primary_contact.id, :action_status => "None", :bid_status => "None"))
-	    	if @rushee.save
-	    		redirect_to @rushee, notice: 'Rushee was successfully created.'
-	    	else
-	    		flash[:alert] = 'That email does not exist for a Brother'
-	    		render action: 'new'
-	    	end
-	    else
-	    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
-	    	flash[:alert] = 'That email does not exist for a Brother'
-	    	render action: 'new'
-	    end
-	  else
-	  	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
-	  	if @rushee.save
-	  		redirect_to @rushee, notice: 'Rushee was succesfully created'
-	  	else
-	  		flash[:alert] = 'That email does not exist for a Brother'
-	    	render action: 'new'
-	  	end
-	  end
+		# if rushee_params[:primary_contact_brother].present?
+		# 	primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
+		# 	if primary_contact
+	 #    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :primary_contact_id => primary_contact.id, :action_status => "None", :bid_status => "None"))
+	 #    	if @rushee.save
+	 #    		redirect_to @rushee, notice: 'Rushee was successfully created.'
+	 #    	else
+	 #    		flash[:alert] = 'Rushee was not successfully created'
+	 #    		render action: 'new'
+	 #    	end
+	 #    else
+	 #    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
+	 #    	flash[:alert] = 'That email does not exist for a Brother'
+	 #    	render action: 'new'
+	 #    end
+	 #  else
+	 #  	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
+	 #  	if @rushee.save
+	 #  		redirect_to @rushee, notice: 'Rushee was successfully created'
+	 #  	else
+	 #  		flash[:alert] = 'Rushee was not successfully created'
+	 #    	render action: 'new'
+	 #  	end
+	 #  end
+		@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
+		respond_to do |format|
+			if @rushee.save(rushee_params)
+				format.html { redirect_to @rushee, notice: 'Rushee was successfully created.' }
+				format.json { render action: 'show', status: :created, location: @rushee }
+			else
+				format.html { render action: 'new' }
+				format.json { render json: @rushee.errors, status: :unprocessable_entity }
+			end
+		end
 	end
 
 	def edit
@@ -62,19 +73,49 @@ class RusheesController < ApplicationController
 		@comments = @rushee.comments
 	end
 
+  def present
+    @rushees = current_brother.fraternity.rushees
+    render :layout => false 
+  end
+
 	def update
-		primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
-		if primary_contact
-    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :primary_contact_id => primary_contact.id, :action_status => "None", :bid_status => "None"))
-    else
-    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
-    end
-		if @rushee.update(rushee_params)
-			redirect_to @rushee, notice: 'Rushee was successfully updated'
-		else
-			redirect_to @rushee, notice: 'Rushee was not successfully updated'
-		end
+		# puts '>>>>>>>>>>>>>>>>> Rushee Params are <<<<<<<<<<<<<<<<<'
+		# puts rushee_params
+		# if rushee_params[:primary_contact_brother].present?
+		# 	primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
+		# 	if primary_contact
+		# 		puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Primary Contact exists <<<<<<<<<<<<<<<<<<<<<<<<<<<'
+	 #    	if @rushee.update(rushee_params.merge(:primary_contact_id => primary_contact.id))
+	 #    		redirect_to @rushee, notice: 'Rushee was successfully updated.'
+	 #    	else
+	 #    		flash[:alert] = 'Rushee was not successfully updated'
+	 #    		render action: 'edit'
+	 #    	end
+	 #    else
+	 #    	flash[:alert] = 'That email does not exist for a Brother'
+	 #    	render action: 'edit'
+	 #    end
+	 #  else
+	 #  	puts '>>>>>> No primary contact brother <<<<<<<'
+	 #  	if @rushee.update(rushee_params.merge(:primary_contact_id => nil))
+	 #  		puts '>>>>>>> We are here <<<<<<<<<<<'
+	 #  		redirect_to @rushee, notice: 'Rushee was successfully updated'
+	 #  	else
+	 #  		flash[:alert] = 'Rushee was not successfully updated'
+	 #    	render action: 'edit'
+	 #  	end
+	 #  end
+		respond_to do |format|
+			if @rushee.update(rushee_params)
+			format.html { redirect_to @rushee, notice: 'Rushee was successfully updated.' }
+			format.json { render action: 'show', status: :created, location: @rushee }
+			else
+			format.html { render action: 'new' }
+			format.json { render json: @rushee.errors, status: :unprocessable_entity }
+			end
+	  end
 	end
+
 
 	private
 	# Never trust parameters from the scary internet, only allow the white list through.
@@ -86,4 +127,14 @@ class RusheesController < ApplicationController
 	  def set_rushee
 	    @rushee = Rushee.find(params[:id])
 	  end
+    
+      
+  def is_verified!
+    if !current_brother.is_verified    
+      sign_out current_brother
+      redirect_to :root
+      return
+    end
+  end
+
 end

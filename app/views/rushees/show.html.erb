@@ -1,39 +1,36 @@
-<div class="rushee-header">
-	<h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
-	<h4 class="status"><%= "Action Status: #{@rushee.action_status}"  %></h4>
-	<h4 class="status" id="bid_status"><%= "Bid Status: #{@rushee.bid_status}" %></h4>
-</div>
-<div class="rushee-main">
-	<div class="rushee-section" id="left">
-		<div id="picture-holder">
-			<%= image_tag @rushee.picture.url(:medium) %>
-		</div>
-	</div>
-	<div class="rushee-section" id="right">
-		<div class="card" id="contact">
-			<div class="card-header">Contact Information</div>
-			<div class="card-body">
-				<p class="card-item">
-					<p class="card-text rushee-label">Primary Contact</p>
-					<p class="card-text rushee-info"></p>
-				</p>
-				
-			</div>
-		</div>
-		<div class="card" id="information">
-			<div class="card-header">Information</div>
-			<div class="card-body"></div>
-		</div>
-		<div class="card" id="actions">
-			<div class="card-header">Actions</div>
-			<div class="card-body"></div>
-		</div>
-		<div class="card" id="twitter">
-			<div class="card-header">Twitter Feed</div>
-			<div class="card-body"></div>
-		</div>
-	</div>
-</div>
+<table width="800px">
+  <tr>
+    <td span="2">
+      <h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+        <div id="picture-holder">
+          <p>Profile Picture</p>
+        </div>
+    </td>
+    
+    <td valign="top">
+      <table class="table">
+        <tr><td>Primary Contact</td><td> <%= @rushee.assignedBrother %> </td></tr>
+        <tr><td>Cellphone</td><td><%= @rushee.cellphone %></td></tr>
+        <tr><td>Dorm & Room Number</td><td><%= @rushee.dorm + " " + @rushee.room_number %></td></tr>
+        <tr><td>Sports</td><td><%= @rushee.sports %></td></tr>
+        <tr><td>Cross Rushing</td><td><%= @rushee.frats_rushing %></td></tr>
+        <tr><td>Home Town</td><td><%= @rushee.hometown %></td></tr>
+        <tr><td>Email</td><td><%= @rushee.email %></td></tr>
+        <tr><td>Action Status</td><td><%= @rushee.action_status %></td></tr>
+        <tr><td>Bid Status</td><td><%= @rushee.bid_status %></td></tr>
+        
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+<h3>Edit Information</h3>
+<%= link_to 'Edit ' + @rushee.firstname + ' ' + @rushee.lastname, edit_rushee_path(@rushee) %>
 
 <h3>Comments</h3>
 <div class="comments-container">

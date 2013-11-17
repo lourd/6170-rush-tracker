@@ -70,3 +70,39 @@ p.rushee-info {
 .card-text {
 	/*font-size: 12px;*/
 }
+
+#presentationScreen {
+  background-color: black;
+}
+
+#presentationTable {
+  width: 100%;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+td#exitCell {
+  text-align: right;
+}
+
+td#pictureCell,#picture-holder {
+  margin: auto;
+}
+
+td#informationCell {
+  font-size: 1.25em;
+}
+
+#lastSlide, #nextSlide, #exitCell {
+  font-size: 2em;
+}
+
+tr#slideNavRow {
+  text-align: center;
+  vertical-align: middle;
+  height: 10%;
+}
+
+tr#mainSlideRow {
+  height: 80%;
+}
