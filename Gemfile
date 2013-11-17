@@ -58,3 +58,4 @@ gem 'devise'
 # Uploading pictures/files
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'aws-s3'
