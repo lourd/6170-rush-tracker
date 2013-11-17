@@ -33,6 +33,7 @@ class RusheesController < ApplicationController
   	end
 
 	def edit
+		@rushee = Rushee.find(params[:id])
 	end
 
 	def delete
@@ -40,6 +41,14 @@ class RusheesController < ApplicationController
 
 	def show
 		@comments = @rushee.comments
+	end
+
+	def update
+		if @rushee.update(rushee_params)
+			redirect_to @rushee, notice: 'Rushee was successfully updated'
+		else
+			redirect_to @rushee, notice: 'Rushee was not successfully updated'
+		end
 	end
 
 	private
