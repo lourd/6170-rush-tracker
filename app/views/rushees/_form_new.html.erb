@@ -1,5 +1,5 @@
 <%= form_for @rushee, :html => {:class => "form-horizontal"} do |f| %>
-    <%# render 'shared/rushee_error_messages' %>
+    <%= render 'shared/rushee_error_messages' %>
     <%= f.text_field :firstname, :class => 'form-control', :placeholder => "First name" %>
     <%= f.text_field :lastname, :class => 'form-control', :placeholder => "Last name" %>
     <%= f.text_field :email, :class => 'form-control', :placeholder => "Email address" %>
