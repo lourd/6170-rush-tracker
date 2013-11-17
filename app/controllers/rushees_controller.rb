@@ -33,6 +33,16 @@ class RusheesController < ApplicationController
 
 	def delete
 	end
+  
+  def comment
+    comment = Comment.new
+    comment.rushee_id = params[:id]
+    comment.brother_id = current_brother.id
+    comment.text = params[:text]
+    comment.save
+    
+    redirect_to "/rushees/"+comment.rushee_id.to_s
+  end
 
 	def show
 		@comments = @rushee.comments
