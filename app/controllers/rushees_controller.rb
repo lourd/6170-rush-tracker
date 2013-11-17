@@ -2,6 +2,7 @@ class RusheesController < ApplicationController
 
 	before_action :set_rushee, only: [:show, :edit, :update, :destroy]
 	before_filter :authenticate_brother!
+  before_filter :is_verified!
 
 	def index
   	@rushees = current_brother.fraternity.rushees
@@ -86,4 +87,14 @@ class RusheesController < ApplicationController
 	  def set_rushee
 	    @rushee = Rushee.find(params[:id])
 	  end
+    
+      
+  def is_verified!
+    if !current_brother.is_verified    
+      sign_out current_brother
+      redirect_to :root
+      return
+    end
+  end
+
 end

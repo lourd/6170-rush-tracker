@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   # require the current user to be authenticated to access this controller
   before_filter :authenticate_brother!
+  before_filter :is_verified!
   
   def index
     @brothers = Brother.findAllByFraternityID current_brother.fraternity_id
@@ -66,5 +67,13 @@ class AccountsController < ApplicationController
 
   def post_params
     params.require(:brother).permit(:firstname, :lastname, :email, :password)
+  end
+  
+  def is_verified!
+    if !current_brother.is_verified    
+      sign_out current_brother
+      redirect_to :root
+      return
+    end
   end
 end
