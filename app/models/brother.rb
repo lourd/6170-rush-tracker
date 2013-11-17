@@ -22,4 +22,5 @@ class Brother < ActiveRecord::Base
   def self.findAllPendingByFraternityID fraternity_id
     return self.where :fraternity_id => fraternity_id, :is_verified => false
   end
+
 end

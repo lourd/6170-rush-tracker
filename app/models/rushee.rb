@@ -8,16 +8,10 @@ class Rushee < ActiveRecord::Base
 	has_many :comments
 	has_many :approvals
 
-  # validates :email, uniqueness: true
-  # validates :cellphone, uniqueness: true
+
+  validates :email, uniqueness: true, case_sensitive: false, allow_blank: true
+  validates :cellphone, uniqueness: true, allow_blank: true
 
   attr_accessor :primary_contact_brother
-
-  def primary_contact_brother_email_must_exist
-    errors.add(:primary_contact_brother, "No Brother has this email") if 
-      !:primary_contact_brother.blank? and !Brother.find_by_email(:primary_contact_brother)
-  end
-
-
 
 end
