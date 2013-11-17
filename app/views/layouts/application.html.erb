@@ -15,7 +15,7 @@
     
   </div>
     <a class="navbar-brand" <%= link_to "RUSHtracker", rushees_path %></a>
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-left">
             <% if current_brother %>
               <!--<li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>-->
               <li><p class="navbar-text"><%= link_to "Rushees", rushees_path %></p></li>
