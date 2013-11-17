@@ -27,7 +27,7 @@ class Brother < ActiveRecord::Base
   def self.verify id
     bro = Brother.find id
     bro.is_verified = true
-    bro.save(:validate => false) 
+    bro.save() 
   end
 
 end
