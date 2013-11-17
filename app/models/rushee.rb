@@ -21,8 +21,8 @@ class Rushee < ActiveRecord::Base
   # Associates the :picture attribute with an attached file
   has_attached_file :picture, 
   	:storage => :s3,
-  	:bucket => 'RandomEngineersBucket',
   	:s3_credentials => {
+      :bucket => 'RandomEngineersBucket',
   		:access_key_id => ENV['AWS_ACCESS_KEY_ID'],
     	:secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   		},
