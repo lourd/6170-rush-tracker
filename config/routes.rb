@@ -8,9 +8,12 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   get "events/delete"
   get "events/" => "events#index"
   get "accounts/" => "accounts#index"
-  get "accounts/detail"
-  get "accounts/verify"
+  get "accounts/detail/:id" => "accounts#detail"
+  get "accounts/verify/:id" => "accounts#verify" 
+  get "accounts/deny/:id" => "accounts#deny" 
   get "accounts/invite"
+  post "accounts/invite" => "accounts#processInvite"
+
   devise_for :brothers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

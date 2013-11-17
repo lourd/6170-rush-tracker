@@ -1,18 +1,42 @@
-<h1>List of Brothers in Your Frat</h1>
+
+<h1>Brothers Index of <%= current_brother.fraternity.name %></h1>
+
+<table width="50%">
+<% if current_brother.is_admin and @pending_bros.length > 0 %>
+    <tr>
+      <td colspan="3"><h3>Pending Brothers</h3></td>
+    </tr>
+    <tr>
+      <td><b>Name</b></td><td><b>Email</b></td><td><b>Accept?</b></td>
+    </tr>
+    <% @pending_bros.each do |brother| %>
+      <tr>
+        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td>
+          <a onclick="return confirm('Are you sure <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>) is valid?')" href="/accounts/verify/<%= brother.id %>">Yes</a> <a onclick="return confirm('Are you sure you want to delete <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>)?')" href="/accounts/deny/<%= brother.id %>">No</a>
+        </td>
+      </tr>
+    <% end %>
+  
+<% end %>
+
 
 <% if @brothers.length > 0 %>
-  <table>
-
     <tr>
-      <th>Name</th><th>Email</th><th>Rushees</th>
+      <td colspan="3"><h3>Verified Brothers</h3></td>
     </tr>
+    <tr>
+      <td><b>Name</b></td><td><b>Email</b></td><% if current_brother.is_admin %><td><b>Deactivate?</b></td><% end %>
+    </tr>
+    
     <% @brothers.each do |brother| %>
       <tr>
-        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td> </td>
+        <td><a href="/accounts/detail/<%= brother.id %>"><%= brother.firstname %> <%= brother.lastname %></a></td><td><%= brother.email %></td><% if current_brother.is_admin %><td><a onclick="return confirm('Are you sure you want to delete <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>)?')" href="/accounts/deny/<%= brother.id %>">Yes</a></td><% end %>
       </tr>
-
-      <% end %>
-
-
-  </table>
+    <% end %>
+    
 <% end %>
+
+</table>
+
+
+

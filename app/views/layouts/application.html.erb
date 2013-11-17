@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Djsmiley0LourdBshaibuMattyhkFinal</title>
+  <title>RUSH Tracker</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -17,9 +17,8 @@
     <a class="navbar-brand" <%= link_to "RUSHtracker", rushees_path %></a>
           <ul class="nav navbar-nav navbar-right">
             <% if current_brother %>
-            <li><p class="navbar-text"><%= current_brother.email %></p>
-            </li>
-            <li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>
+              <li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>
+              <li><p class="navbar-text"><%= link_to "Sign out", destroy_brother_session_path, :method => :delete %></p></li>
             <% end %>
           </ul>
           

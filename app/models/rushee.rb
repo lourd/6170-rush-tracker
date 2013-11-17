@@ -8,5 +8,7 @@ class Rushee < ActiveRecord::Base
 	has_many :comments
 	has_many :approvals
 
-
+  def self.findAllByPrimaryContactID id
+    self.where :primary_contact_id => id
+  end
 end

@@ -22,4 +22,12 @@ class Brother < ActiveRecord::Base
   def self.findAllPendingByFraternityID fraternity_id
     return self.where :fraternity_id => fraternity_id, :is_verified => false
   end
+
+  # make is_verified true
+  def self.verify id
+    bro = Brother.find id
+    bro.is_verified = true
+    bro.save() 
+  end
+
 end
