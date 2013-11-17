@@ -20,7 +20,6 @@
               <!--<li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>-->
               <li><p class="navbar-text"><%= link_to "Rushees", rushees_path %></p></li>
               <li><p class="navbar-text"><%= link_to "Brothers", accounts_path %></p></li>
-              <li><p class="navbar-text"><%= link_to "Brothers", accounts_path %></p></li>
               <li><p class="navbar-text"><%= link_to "Settings", edit_brother_registration_path %></p></li>
               <li><p class="navbar-text"><%= link_to "Sign out", destroy_brother_session_path, :method => :delete %></p></li>
             <% end %>
