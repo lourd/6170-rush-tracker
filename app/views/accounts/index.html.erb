@@ -25,13 +25,15 @@
       <td colspan="3"><h3>Verified Brothers</h3></td>
     </tr>
     <tr>
-      <td><b>Name</b></td><td><b>Email</b></td><td><b>Deactivate?</b></td>
+      <td><b>Name</b></td><td><b>Email</b></td><% if current_brother.is_admin %><td><b>Deactivate?</b></td><% end %>
     </tr>
+    
     <% @brothers.each do |brother| %>
       <tr>
-        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td><a onclick="return confirm('Are you sure you want to delete <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>)?')" href="/accounts/deny/<%= brother.id %>">Yes</a></td>
+        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><% if current_brother.is_admin %><td><a onclick="return confirm('Are you sure you want to delete <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>)?')" href="/accounts/deny/<%= brother.id %>">Yes</a></td><% end %>
       </tr>
     <% end %>
+    
 <% end %>
 
 </table>
