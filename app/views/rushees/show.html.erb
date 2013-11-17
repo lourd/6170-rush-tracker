@@ -1,17 +1,17 @@
-<table class="table>
+<table width="800px">
   <tr>
     <td span="2">
       <h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
     </td>
   </tr>
   <tr>
-    <td>
+    <td valign="top">
         <div id="picture-holder">
           <p>Profile Picture</p>
         </div>
     </td>
     
-    <td>
+    <td valign="top">
       <table class="table">
         <tr><td>Primary Contact</td><td><%= @rushee.brother.firstname + " "+ @rushee.brother.lastname %></td></tr>
         <tr><td>Cellphone</td><td><%= @rushee.cellphone %></td></tr>
