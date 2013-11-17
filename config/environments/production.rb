@@ -87,5 +87,5 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
-  AWS.config(:access_key_id, :secret_access_key)
+  AWS.config({:access_key_id, :secret_access_key})
 end
