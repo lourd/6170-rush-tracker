@@ -10,7 +10,7 @@ class Rushee < ActiveRecord::Base
 
   validates :email, uniqueness: true, case_sensitive: false, allow_blank: true
   validates :cellphone, uniqueness: true, allow_blank: true
-  validates :name, presence: true
+  validates :firstname, presence: true
 
   attr_accessor :primary_contact_brother
 

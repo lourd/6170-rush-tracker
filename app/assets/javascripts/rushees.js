@@ -7,6 +7,12 @@ var ready = function() {
     //Handle Escape Key Press  
     if (e.keyCode == 27) { 
       alert("Peanut butter jelly time");
+      $.ajax({
+        url: "/presentation",
+        success: function(data) { 
+          console.log(data); },
+        dataType: "json"
+      });
     }
   });
 
@@ -26,12 +32,3 @@ var ready = function() {
 //Listeners for Normal Page Loads and Link_Tos
 $(document).ready(ready);
 $(document).on('page:load', ready);
-
-
-  /*
-   $.ajax({
-            url: requestUrl,
-            success: function(data) { $('#fill').html(data["content"].replace(/\r\n|\r|\n/g,"<br />")); },
-            dataType: "json"
-          });
-  */
