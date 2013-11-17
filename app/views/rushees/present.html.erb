@@ -8,29 +8,40 @@
   </head>
 
   <body id="presentationScreen">
-      <table>
+      <table id="presentationTable">
         <tr>
           <td></td>
-          <td>
+          <td id="exitCell">
             <%= link_to "Exit", rushees_path %>
           </td>
         </tr>
         <tr>
-          <td>
+          <td id="pictureCell">
             <div id="picture-holder">
 	            <p>Profile Picture</p>
             </div>
           </td>
-          <td>
+          <td id="informationCell">
             <% rushee = @rushees.first %>
-            <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %>
-            <% rushee.attributes.each do |attr_name, attr_value| %>
-              <%# --- if attr name not in list of unwanted attrs %>
-              <%= attr_name+':'+attr_value.to_s %><br />
-            <% end %>          
+            <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %><br />
+            <p>
+              email: <%= rushee.email %><br />
+              Primary Contact:  <%= rushee.assignedBrother %><br />
+              phone number: <%= rushee.cellphone %><br />
+              facebook page:  <%= rushee.facebook_url %><br />
+              dorm: <%= rushee.dorm %><br />
+              hometown: <%= rushee.hometown %><br />
+              sports: <%= rushee.sports %><br />
+              Also Rushing: <%= rushee.frats_rushing %><br />
+              
+              Bid?  <%= rushee.bid_status %>                      
           </td>
         </tr>
-        <tr>
+        <tr class="fillerRow">
+          <td></td>
+          <td></td>
+        </tr>
+        <tr id="slideNavRow">
           <td><a id="lastSlide" href="#">Back</a></td>
           <td><a id="nextSlide" href="#">Next</a><br/></td>
       <table>    

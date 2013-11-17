@@ -6,11 +6,12 @@
 			</th>
 		</tr>
 	</thead>
+  <br/> <%= link_to "View Presentation", presentation_path %></p></li>
 	<tbody>
 		<% @rushees.each do |rushee| %>
-		<tr>
-			<td><%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %></td> 	
-		</tr>
+		  <tr>
+			  <td><%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %></td> 	
+		  </tr>
 		<% end %>
 		<tr>
 			<td><%= link_to 'Add rushee', new_rushee_url %></td>
