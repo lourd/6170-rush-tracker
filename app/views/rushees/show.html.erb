@@ -1,6 +1,36 @@
-<h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
-<h4 class="status"><%= "Action Status: #{@rushee.action_status}"  %></h4>
-<h4 class="status" id="bid_status"><%= "Bid Status: #{@rushee.bid_status}" %></h4>
-<div id="picture-holder">
-	<p>Profile Picture</p>
+<div class="rushee-header">
+	<h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
+	<h4 class="status"><%= "Action Status: #{@rushee.action_status}"  %></h4>
+	<h4 class="status" id="bid_status"><%= "Bid Status: #{@rushee.bid_status}" %></h4>
+</div>
+<div class="rushee-main">
+	<div class="rushee-section" id="left">
+		<div id="picture-holder">
+			<%= image_tag @rushee.picture.url(:medium) %>
+		</div>
+	</div>
+	<div class="rushee-section" id="right">
+		<div class="card" id="contact">
+			<div class="card-header">Contact Information</div>
+			<div class="card-body">
+				<p class="card-item">
+					<p class="card-text rushee-label">Primary Contact</p>
+					<p class="card-text rushee-info"></p>
+				</p>
+				
+			</div>
+		</div>
+		<div class="card" id="information">
+			<div class="card-header">Information</div>
+			<div class="card-body"></div>
+		</div>
+		<div class="card" id="actions">
+			<div class="card-header">Actions</div>
+			<div class="card-body"></div>
+		</div>
+		<div class="card" id="twitter">
+			<div class="card-header">Twitter Feed</div>
+			<div class="card-body"></div>
+		</div>
+	</div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115042014) do
+ActiveRecord::Schema.define(version: 20131117200719) do
 
   create_table "action_brothers", force: true do |t|
     t.integer  "action_id"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20131115042014) do
     t.string   "cellphone"
     t.string   "facebook_url"
     t.string   "twitter_url"
-    t.string   "profile_picture_url"
+    t.string   "picture"
     t.string   "dorm"
     t.string   "room_number"
     t.string   "hometown"
@@ -109,6 +109,10 @@ ActiveRecord::Schema.define(version: 20131115042014) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fraternity_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
 end

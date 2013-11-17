@@ -54,3 +54,7 @@ gem 'devise'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Uploading pictures/files
+gem 'paperclip'
+gem 'aws-sdk'

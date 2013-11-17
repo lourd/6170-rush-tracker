@@ -8,7 +8,17 @@ class Rushee < ActiveRecord::Base
 	has_many :comments
 	has_many :approvals
 
+	# attr_accessible :picture
+
   def self.findAllByPrimaryContactID id
     self.where :primary_contact_id => id
   end
+
+  # Associates the :picture attribute with an attached file
+  has_attached_file :picture, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+
 end
