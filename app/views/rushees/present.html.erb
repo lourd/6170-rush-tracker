@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Presentation</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body id="presentationScreen">
+    <div class="my-container">
+      <%= link_to "Exit", rushees_path %><hr />      
+
+      <% rushee = @rushees.first %>
+      <tr>
+	      <td>
+          <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %>        
+          <div id="picture-holder">
+	          <p>Profile Picture</p>
+          </div>
+
+          <hr />
+          
+          <% rushee.attributes.each do |attr_name, attr_value| %>
+            <%# --- if attr name not in list of unwanted attrs %>
+            <%= attr_name+':'+attr_value.to_s %><br />
+          <% end %>
+          
+        </td><br /> 	
+      </tr>
+
+      <hr/>
+      <a id="lastSlide" href="#">Back</a>
+      <a id="nextSlide" href="#">Next</a><br/>
+    </div>
+  </body>
+
+</html>
+
+

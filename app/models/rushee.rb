@@ -8,5 +8,4 @@ class Rushee < ActiveRecord::Base
 	has_many :comments
 	has_many :approvals
 
-
 end

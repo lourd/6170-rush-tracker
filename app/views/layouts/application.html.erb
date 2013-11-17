@@ -1,39 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Djsmiley0LourdBshaibuMattyhkFinal</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-
-  
-<nav class="navbar navbar-top" role="navigation">
-  <div class="navbar-header">
-    
-  </div>
-    <a class="navbar-brand" <%= link_to "RUSHtracker", rushees_path %></a>
-          <ul class="nav navbar-nav navbar-right">
-            <% if current_brother %>
-            <li><p class="navbar-text"><%= current_brother.email %></p>
-            </li>
-            <li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>
-            <% end %>
-          </ul>
-          
-          
-            <%#= link_to "Log out", log_out_path %>
-            <%#= link_to "Sign up", sign_up_path %>
-            <%#= link_to "log in", log_in_path %>
-
-</nav>
-
-<div class="my-container">
-  <%= yield %>
-</div>
-
-
-</body>
+  <head>
+    <title>Djsmiley0LourdBshaibuMattyhkFinal</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>  
+    <div class="my-container">
+      <%= yield %>
+    </div>
+  </body>
 </html>
