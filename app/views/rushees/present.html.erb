@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Presentation</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body id="presentationScreen">
+      <table id="presentationTable">
+        <tr>
+          <td></td>
+          <td id="exitCell">
+            <%= link_to "Exit", rushees_path %>
+          </td>
+        </tr>
+        <tr>
+          <td id="pictureCell">
+            <div id="picture-holder">
+	            <p>Profile Picture</p>
+            </div>
+          </td>
+          <td id="informationCell">
+            <% rushee = @rushees.first %>
+            <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %><br />
+            <p>
+              email: <%= rushee.email %><br />
+              Primary Contact:  <%= rushee.assignedBrother %><br />
+              phone number: <%= rushee.cellphone %><br />
+              facebook page:  <%= rushee.facebook_url %><br />
+              dorm: <%= rushee.dorm %><br />
+              hometown: <%= rushee.hometown %><br />
+              sports: <%= rushee.sports %><br />
+              Also Rushing: <%= rushee.frats_rushing %><br />
+              
+              Bid?  <%= rushee.bid_status %>                      
+          </td>
+        </tr>
+        <tr id="slideNavRow">
+          <td><a id="lastSlide" href="#">Back</a></td>
+          <td><a id="nextSlide" href="#">Next</a></td>
+      <table>    
+  </body>
+
+</html>
+
+

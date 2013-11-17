@@ -1,11 +1,12 @@
 class RusheesController < ApplicationController
 
 	before_action :set_rushee, only: [:show, :edit, :update, :destroy]
+  layout 'application', except: :present
 	before_filter :authenticate_brother!
   before_filter :is_verified!
 
 	def index
-  	@rushees = current_brother.fraternity.rushees
+    @rushees = current_brother.fraternity.rushees
 	end
 
 	def new
@@ -64,6 +65,11 @@ class RusheesController < ApplicationController
 		@comments = @rushee.comments
 	end
 
+  def present
+    @rushees = current_brother.fraternity.rushees
+    render :layout => false 
+  end
+
 	def update
 		puts '>>>>>>>>>>>>>>>>> Rushee Params are <<<<<<<<<<<<<<<<<'
 		puts rushee_params
@@ -92,6 +98,7 @@ class RusheesController < ApplicationController
 	  	end
 	  end
 	end
+
 
 	private
 	# Never trust parameters from the scary internet, only allow the white list through.

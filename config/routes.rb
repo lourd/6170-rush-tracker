@@ -17,6 +17,10 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   get "rushees/edit" => "rushees#edit"
 
   devise_for :brothers
+
+  match '/presentation', to: 'rushees#present', via: 'get'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
