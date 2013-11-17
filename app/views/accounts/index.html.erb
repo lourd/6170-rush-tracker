@@ -1,6 +1,28 @@
-<h1>List of Brothers in Your Frat</h1>
+
+
+
+<% if current_brother.is_admin and @pending_bros.length > 0 %>
+
+  <h2>Pending Brothers</h2>
+  <table border="1px" width="100%">
+    <tr>
+      <td>Name</td><td>Email</td><td>Accept?</td>
+    </tr>
+    <% @pending_bros.each do |brother| %>
+      <tr>
+        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td>
+          <a onclick="return confirm('Are you sure <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>) is valid?')" href="/accounts/verify/<%= brother.id %>">Y</a> <a onclick="return confirm('Are you sure you want to delete <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>)?')" href="/accounts/deny/<%= brother.id %>">N</a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>
+
+
 
 <% if @brothers.length > 0 %>
+<h1>List of Brothers in Your Frat</h1>
   <table border="1px" width="100%">
 
     <tr>
@@ -18,20 +40,3 @@
 <% end %>
 
 
-<% if current_brother.is_admin and @pending_bros.length > 0 %>
-
-  <h2>Pending Brothers</h2>
-  <table border="1px" width="100%">
-    <tr>
-      <td>Name</td><td>Email</td><td>Accept?</td>
-    </tr>
-    <% @pending_bros.each do |brother| %>
-      <tr>
-        <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td>
-          <a href="/accounts/verify/<%= brother.id %>">Y</a> <a href="/accounts/deny/<%= brother.id %>">N</a>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-
-<% end %>
