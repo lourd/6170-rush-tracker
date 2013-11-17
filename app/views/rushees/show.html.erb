@@ -13,9 +13,7 @@
     
     <td valign="top">
       <table class="table">
-        <% if @rushee.brother %>
-          <tr><td>Primary Contact</td><td><%= @rushee.brother.firstname + " "+ @rushee.brother.lastname %></td></tr>
-        <% end %>
+        <tr><td>Primary Contact</td><td> <%= @rushee.assignedBrother %> </td></tr>
         <tr><td>Cellphone</td><td><%= @rushee.cellphone %></td></tr>
         <tr><td>Dorm & Room Number</td><td><%= @rushee.dorm + " " + @rushee.room_number %></td></tr>
         <tr><td>Sports</td><td><%= @rushee.sports %></td></tr>

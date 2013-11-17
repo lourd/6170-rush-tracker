@@ -10,6 +10,7 @@ class Rushee < ActiveRecord::Base
 
   validates :email, uniqueness: true, case_sensitive: false, allow_blank: true
   validates :cellphone, uniqueness: true, allow_blank: true
+  validates :name, presence: true
 
   attr_accessor :primary_contact_brother
 
@@ -18,4 +19,11 @@ class Rushee < ActiveRecord::Base
     self.where :primary_contact_id => id
   end
 
+  def assignedBrother
+    if self.brother
+      brother.firstname + " "+ brother.lastname
+    else
+      "Unassigned"
+    end
+  end
 end

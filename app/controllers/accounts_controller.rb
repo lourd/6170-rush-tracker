@@ -32,8 +32,9 @@ class AccountsController < ApplicationController
     end
     
     id = params[:id]
-    Brother.destroy id 
-
+    if id.to_i != current_brother.id
+      Brother.destroy id 
+    end
     redirect_to accounts_path
   end
 
