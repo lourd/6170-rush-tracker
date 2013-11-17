@@ -1,2 +1,5 @@
-<h1>Accounts#detail</h1>
-<p>Find me in app/views/accounts/detail.html.erb</p>
+<h1><%= @brother.fraternity.name %> Brother Account Details</h1>
+<h3><%= @brother.firstname + " " + @brother.lastname %> (<%= @brother.email %>)</h3>
+<%= if @brother.rushees.length > 0 %>
+<p>Primary Contact For:</p>
+<% end %>

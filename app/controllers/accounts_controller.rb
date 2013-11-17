@@ -7,7 +7,8 @@ class AccountsController < ApplicationController
     @pending_bros = Brother.findAllPendingByFraternityID current_brother.fraternity_id   
   end
 
-  def detail 
+  def detail
+    @brother = Brother.find params[:id]
   end
 
   def verify
