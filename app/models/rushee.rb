@@ -8,7 +8,14 @@ class Rushee < ActiveRecord::Base
 	has_many :comments
 	has_many :approvals
 
+  validates :email, uniqueness: true, case_sensitive: false, allow_blank: true
+  validates :cellphone, uniqueness: true, allow_blank: true
+
+  attr_accessor :primary_contact_brother
+
+
   def self.findAllByPrimaryContactID id
     self.where :primary_contact_id => id
   end
+
 end
