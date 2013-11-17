@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 fraternities = Fraternity.create([{ name: 'Devfrat' }])
-brothers = Brother.create!(firstname: 'Admin', lastname: 'User', email: 'random-engineers@mit.edu', password: 'adminpass', password_confirmation: 'adminpass', is_verified: true, is_admin: true, fraternity: fraternities.first)
+brothers = Brother.create!(firstname: 'Admin', lastname: 'User', email: 'random-engineers@mit.edu', password: 'adminpass', password_confirmation: 'adminpass', is_verified: true, is_admin: true, fraternity_id: 1)
