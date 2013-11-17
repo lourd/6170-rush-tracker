@@ -8,31 +8,32 @@
   </head>
 
   <body id="presentationScreen">
-    <div class="my-container">
-      <%= link_to "Exit", rushees_path %><hr />      
-
-      <% rushee = @rushees.first %>
-      <tr>
-	      <td>
-          <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %>        
-          <div id="picture-holder">
-	          <p>Profile Picture</p>
-          </div>
-
-          <hr />
-          
-          <% rushee.attributes.each do |attr_name, attr_value| %>
-            <%# --- if attr name not in list of unwanted attrs %>
-            <%= attr_name+':'+attr_value.to_s %><br />
-          <% end %>
-          
-        </td><br /> 	
-      </tr>
-
-      <hr/>
-      <a id="lastSlide" href="#">Back</a>
-      <a id="nextSlide" href="#">Next</a><br/>
-    </div>
+      <table>
+        <tr>
+          <td></td>
+          <td>
+            <%= link_to "Exit", rushees_path %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id="picture-holder">
+	            <p>Profile Picture</p>
+            </div>
+          </td>
+          <td>
+            <% rushee = @rushees.first %>
+            <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %>
+            <% rushee.attributes.each do |attr_name, attr_value| %>
+              <%# --- if attr name not in list of unwanted attrs %>
+              <%= attr_name+':'+attr_value.to_s %><br />
+            <% end %>          
+          </td>
+        </tr>
+        <tr>
+          <td><a id="lastSlide" href="#">Back</a></td>
+          <td><a id="nextSlide" href="#">Next</a><br/></td>
+      <table>    
   </body>
 
 </html>

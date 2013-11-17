@@ -3,19 +3,20 @@
     
   </div>
     <a class="navbar-brand" <%= link_to "RUSHtracker", rushees_path %></a>
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_brother %>
-          <li>
-            <p class="navbar-text"><%= current_brother.email %></p>
-          </li>
-          <li>
-            <p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p>
-          </li>
-        <% end %>
-      </ul> 
-          
+          <ul class="nav navbar-nav navbar-left">
+            <% if current_brother %>
+              <!--<li><p class="navbar-text"><%= "Logged in as #{current_brother.firstname} #{current_brother.lastname} "%></p></li>-->
+              <li><p class="navbar-text"><%= link_to "Rushees", rushees_path %></p></li>
+              <li><p class="navbar-text"><%= link_to "Brothers", accounts_path %></p></li>
+              <li><p class="navbar-text"><%= link_to "Settings", edit_brother_registration_path %></p></li>
+              <li><p class="navbar-text"><%= link_to "Sign out", destroy_brother_session_path, :method => :delete %></p></li>
+            <% else %>
+              <li><p class="navbar-text"><%= link_to "Sign In", new_brother_session_path %></p></li>
+              <li><p class="navbar-text"><%= link_to "Sign Up", new_brother_registration_path %></p></li>
+            <% end %>
+          </ul>
+                 
   <%#= link_to "Log out", log_out_path %>
   <%#= link_to "Sign up", sign_up_path %>
   <%#= link_to "log in", log_in_path %>
-
 </nav>
