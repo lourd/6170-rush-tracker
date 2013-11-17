@@ -32,7 +32,7 @@
 
 
 <h3>Edit Information</h3>
-<a href="#">Edit <%= "#{@rushee.firstname} #{@rushee.lastname}" %></a>
+<%= link_to 'Edit ' + @rushee.firstname + ' ' + @rushee.lastname, edit_rushee_path(@rushee) %>
 
 <h3>Comments</h3>
 <div class="comments-container">
