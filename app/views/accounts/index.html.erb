@@ -1,7 +1,8 @@
 
+
 <h1>Brothers Index of <%= current_brother.fraternity.name %></h1>
 
-<table width="50%">
+<table class="table" width="50%">
 <% if current_brother.is_admin and @pending_bros.length > 0 %>
     <tr>
       <td colspan="3"><h3>Pending Brothers</h3></td>
@@ -12,7 +13,7 @@
     <% @pending_bros.each do |brother| %>
       <tr>
         <td><%= brother.firstname %> <%= brother.lastname %></td><td><%= brother.email %></td><td>
-          <a onclick="return confirm('Are you sure <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>) is valid?')" href="/accounts/verify/<%= brother.id %>">Yes</a> <a onclick="return confirm('Are you sure you want to delete <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>)?')" href="/accounts/deny/<%= brother.id %>">No</a>
+          <a onclick="return confirm('Are you sure <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>) is a real bro?')" href="/accounts/verify/<%= brother.id %>">Yes</a> <a onclick="return confirm('Are you sure <%= brother.firstname %> <%= brother.lastname %> (<%= brother.email %>) is not a real bro?')" href="/accounts/deny/<%= brother.id %>">No</a>
         </td>
       </tr>
     <% end %>

@@ -4,3 +4,35 @@
 <div id="picture-holder">
 	<p>Profile Picture</p>
 </div>
+
+<h3>Comments</h3>
+<div class="comments-container">
+  <table class="table">
+  <tr>
+    <td>
+    <%= form_tag( { :action => :comment }, { :method => :post }) %>
+      
+      
+        <input type="hidden" name="id" value="<%= @rushee.id %>">
+        <textarea style="width:450px;height:100px;" name="text"></textarea><br/>
+        <input type="submit" value="Post Comment">
+      </form>
+    
+    </td>
+  </tr>
+  <% if @comments.length > 0 %>
+      <% @comments.reverse_each do |comment| %>
+        <tr>
+          <td>
+            <a href="/accounts/detail/<%= comment.brother.id %>"><%= comment.brother.firstname + " " + comment.brother.lastname %></a> said <%= time_ago_in_words(comment.created_at) %> ago: <br/><br/><%= comment.text %>
+          </td>
+        </tr>
+      <% end %>
+    
+  <% else %>
+    <tr>
+      <td>No comments yet.</td>
+    </tr>
+  <% end %>
+  </table>
+</div>
