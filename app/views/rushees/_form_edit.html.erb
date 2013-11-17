@@ -1,0 +1,29 @@
+<%= form_for @rushee, :html => {:class => "form-horizontal"} do |f| %>
+    <%= f.text_field :firstname, :class => 'form-control', :placeholder => "First name" %>
+    <%= f.text_field :lastname, :class => 'form-control', :placeholder => "Last name" %>
+    <%= f.text_field :email, :class => 'form-control', :placeholder => "Email address" %>
+    <%= f.text_field :cellphone, :class => 'form-control', :placeholder => "Cell phone" %>
+    <%= f.text_field :facebook_url, :class => 'form-control', :placeholder => "Facebook URL"%>
+    <%= f.text_field :twitter_url, :class => 'form-control', :placeholder => "Twitter URL"%>
+    <div class="form-group">
+      <label for="profileFile">Profile Picture</label>
+      <%= f.file_field :profile_picture_url, :id => "profileFile" %>
+      <p class="help-block">Upload a picture for them</p>
+    </div>
+    <%= f.text_field :dorm, :class => 'form-control', :placeholder => "Dorm"%>
+    <%= f.text_field :room_number, :class => 'form-control', :placeholder => 'Room number' %>
+    <%= f.text_field :hometown, :class => 'form-control', :placeholder => "Hometown" %>
+    <%= f.text_field :sports, :class => 'form-control', :placeholder => "Sports" %>
+    <%= f.text_field :frats_rushing, :class => 'form-control', :placeholder => "Cross rushing with" %>
+    <% if @rushee.brother %>
+      <%= f.text_field :primary_contact_brother, :class => 'form-control', :value => @rushee.brother.email %>
+    <% else %>
+      <%= f.text_field :primary_contact_brother, :class => 'form-control', :placeholder => "Primary contact email" %>
+    <% end %>
+
+    
+
+  <div class="actions">
+    <%= f.submit :class => "btn"%>
+  </div>
+<% end %>

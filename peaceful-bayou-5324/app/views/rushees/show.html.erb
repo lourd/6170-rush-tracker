@@ -1,0 +1,68 @@
+<div class="rushee-header">
+	<h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
+	<h4 class="status"><%= "Action Status: #{@rushee.action_status}"  %></h4>
+	<h4 class="status" id="bid_status"><%= "Bid Status: #{@rushee.bid_status}" %></h4>
+</div>
+<div class="rushee-main">
+	<div class="rushee-section" id="left">
+		<div id="picture-holder">
+			<%= image_tag @rushee.picture.url(:medium) %>
+		</div>
+	</div>
+	<div class="rushee-section" id="right">
+		<div class="card" id="contact">
+			<div class="card-header">Contact Information</div>
+			<div class="card-body">
+				<p class="card-item">
+					<p class="card-text rushee-label">Primary Contact</p>
+					<p class="card-text rushee-info"></p>
+				</p>
+				
+			</div>
+		</div>
+		<div class="card" id="information">
+			<div class="card-header">Information</div>
+			<div class="card-body"></div>
+		</div>
+		<div class="card" id="actions">
+			<div class="card-header">Actions</div>
+			<div class="card-body"></div>
+		</div>
+		<div class="card" id="twitter">
+			<div class="card-header">Twitter Feed</div>
+			<div class="card-body"></div>
+		</div>
+	</div>
+</div>
+
+<h3>Comments</h3>
+<div class="comments-container">
+  <table class="table">
+  <tr>
+    <td>
+    <%= form_tag( { :action => :comment }, { :method => :post }) %>
+      
+      
+        <input type="hidden" name="id" value="<%= @rushee.id %>">
+        <textarea style="width:450px;height:100px;" name="text"></textarea><br/>
+        <input type="submit" value="Post Comment">
+      </form>
+    
+    </td>
+  </tr>
+  <% if @comments.length > 0 %>
+      <% @comments.reverse_each do |comment| %>
+        <tr>
+          <td>
+            <a href="/accounts/detail/<%= comment.brother.id %>"><%= comment.brother.firstname + " " + comment.brother.lastname %></a> said <%= time_ago_in_words(comment.created_at) %> ago: <br/><br/><%= comment.text %>
+          </td>
+        </tr>
+      <% end %>
+    
+  <% else %>
+    <tr>
+      <td>No comments yet.</td>
+    </tr>
+  <% end %>
+  </table>
+</div>
