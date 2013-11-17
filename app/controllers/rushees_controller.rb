@@ -13,7 +13,6 @@ class RusheesController < ApplicationController
 	end
 
 	def create
-
 		# Check if the email given for a brother is valid before saving
 		if rushee_params[:primary_contact_brother].present?
 			primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
@@ -33,9 +32,9 @@ class RusheesController < ApplicationController
 	  else
 	  	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
 	  	if @rushee.save
-	  		redirect_to @rushee, notice: 'Rushee was succesfully created'
+	  		redirect_to @rushee, notice: 'Rushee was successfully created'
 	  	else
-	  		flash[:alert] = 'That email does not exist for a Brother'
+	  		flash[:alert] = 'Rushee was not successfully created'
 	    	render action: 'new'
 	  	end
 	  end
@@ -43,6 +42,8 @@ class RusheesController < ApplicationController
 
 	def edit
 		@rushee = Rushee.find(params[:id])
+		puts '>>>>>>>>>>>>>>>>> Params are <<<<<<<<<<<<<<<<<<'
+		puts params
 	end
 
 	def delete
@@ -63,17 +64,31 @@ class RusheesController < ApplicationController
 	end
 
 	def update
-		primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
-		if primary_contact
-    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :primary_contact_id => primary_contact.id, :action_status => "None", :bid_status => "None"))
-    else
-    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
-    end
-		if @rushee.update(rushee_params)
-			redirect_to @rushee, notice: 'Rushee was successfully updated'
-		else
-			redirect_to @rushee, notice: 'Rushee was not successfully updated'
-		end
+		puts '>>>>>>>>>>>>>>>>> Rushee Params are <<<<<<<<<<<<<<<<<'
+		puts rushee_params
+		if rushee_params[:primary_contact_brother].present?
+			primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
+			if primary_contact
+				puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Primary Contact exists <<<<<<<<<<<<<<<<<<<<<<<<<<<'
+	    	@rushee.primary_contact_id = primary_contact.id
+	    	if @rushee.update(rushee_params)
+	    		redirect_to @rushee, notice: 'Rushee was successfully updated.'
+	    	else
+	    		flash[:alert] = 'That email does not exist for a Brother'
+	    		render action: 'edit'
+	    	end
+	    else
+	    	flash[:alert] = 'That email does not exist for a Brother'
+	    	render action: 'edit'
+	    end
+	  else
+	  	if @rushee.update(rushee_params)
+	  		redirect_to @rushee, notice: 'Rushee was successfully created'
+	  	else
+	  		flash[:alert] = 'Rushee was not successfully created'
+	    	render action: 'edit'
+	  	end
+	  end
 	end
 
 	private
