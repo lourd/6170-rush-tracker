@@ -34,4 +34,21 @@ class Rushee < ActiveRecord::Base
       "Unassigned"
     end
   end
+
+  def validActionSelectStatuses
+    return [["None", "None"], ["Stay the Course", "Stay the Course"], 
+      ["Push Harder", "Push Harder"], ["Repudiate", "Repudiate"]]
+  end
+
+  def validBidSelectStatuses
+    return [["None", "None"], ["Offered", "Offered"], ["Accepted", "Accepted"], ["Rejected", "Rejected"]]
+  end
+
+  def validActionStatuses
+    return ["None", "Stay the Course", "Push Harder", "Repudiate"]
+  end
+
+  def validBidStatuses
+    return ["None", "Offered", "Accepted", "Rejected"]
+  end
 end
