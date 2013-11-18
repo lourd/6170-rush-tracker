@@ -18,6 +18,8 @@
 <h3>Administrator Controls:</h3>
 <ul>
   <li><a href="#">Assign Rushee</a></li>
-  <li><a onclick="return confirm('Are you sure you want to delete <%= @brother.firstname + " " + @brother.lastname %> (<%= @brother.email %>)?')" href="/accounts/deny/<%= @brother.id %>">Deactivate</a></li>
+  <% if @current_brother != @brother %>
+    <li><a onclick="return confirm('Are you sure you want to delete <%= @brother.firstname + " " + @brother.lastname %> (<%= @brother.email %>)?')" href="/accounts/deny/<%= @brother.id %>">Deactivate</a></li>
+  <% end %>
 </ul>
 <% end %>

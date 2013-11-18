@@ -11,6 +11,10 @@ class AccountsController < ApplicationController
   def detail
     @brother = Brother.find params[:id]
     @rushees = Rushee.findAllByPrimaryContactID @brother.id
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @brother}
+    end
   end
 
   def verify

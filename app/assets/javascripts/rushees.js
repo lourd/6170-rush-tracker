@@ -52,16 +52,27 @@ var updatePage = function(rushee, requestedID) {
   $("#informationCell").attr("data-rails-id", rushee.id);
 
   $("#slideName").html(rushee.firstname+" "+rushee.lastname);
+  updatePrimaryContactName(rushee.primary_contact_id);
   $("#slideEmail").html(rushee.email);
-  $("#slidePrimary").html(rushee.primary_contact_id);
   $("#slidePhone").html(rushee.cellphone);
   $("#slidefaceBook").html(rushee.facebook_url);
   $("#slideDorm").html(rushee.dorm);
   $("#slideHometown").html(rushee.hometown);
   $("#slideSports").html(rushee.sports);
   $("#slideCompetingFrats").html(rushee.frats_rushing);
+  $("#slideActionStatus").html(rushee.action_status);
   $("#slideBidStatus").html(rushee.bid_status);
 };
+
+var updatePrimaryContactName = function(id) {
+  $.ajax({
+      url: "/accounts/detail/" + id,
+      success: function(data) { 
+         $("#slidePrimary").html(data.firstname+" "+data.lastname);
+      },
+      dataType: "json"
+    });
+}
 
 //Listeners for Normal Page Loads and Link_Tos
 $(document).ready(ready);
