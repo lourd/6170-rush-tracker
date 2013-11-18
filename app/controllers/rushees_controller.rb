@@ -146,6 +146,7 @@ class RusheesController < ApplicationController
   def is_verified!
     if !current_brother.is_verified    
       sign_out current_brother
+      flash[:error] = "Your account has not been verified yet."
       redirect_to :root
       return
     end
