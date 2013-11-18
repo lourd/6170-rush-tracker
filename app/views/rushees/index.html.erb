@@ -1,4 +1,8 @@
-<a href="/rushees/new">Add Rushee</a>
+<h1>Rushees Index of <%= current_brother.fraternity.name %></h1>
+<ul>
+  <li><a href="/rushees/new">Add Rushee</a></li>
+</ul>
+
 
 <table class="table">
 
@@ -11,7 +15,7 @@
           <% if @rushees[i+col] != nil %>
             <% rushee = @rushees[i+col] %>
             <!-- put rushee shit here -->
-            <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %>
+            <h4><%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %></h4>
             <ul>
               <li>From <%= rushee.hometown %></li>
               <li>Lives in <%= rushee.dorm %></li>
