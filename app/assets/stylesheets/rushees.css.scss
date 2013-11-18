@@ -21,10 +21,54 @@ h4.status {
 #picture-holder {
 	margin-top: 5px;
 	background-color: gray;
-	width: 300px;
-	height: 300px;
+	width: 350px;
+	height: 350px;
 	text-align: center;
 	line-height: 300px;
+}
+
+.rushee-main {
+	width: 900px;
+}
+.rushee-section {
+	display: block;
+}
+
+.rushee-section#left {
+	float: left;
+
+}
+.rushee-section#right {
+	float: right;
+}
+
+.card {
+	width: 500px;
+	border: black solid 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
+.card-header {
+	width: 100%;
+	background-color: #F5F7F8;
+}
+
+.card-body {
+	padding: 10px;
+}
+
+p.rushee-label {
+	color: gray;
+}
+
+p.rushee-info {
+	color: black;
+}
+
+.card-text {
+	/*font-size: 12px;*/
 }
 
 #presentationScreen {

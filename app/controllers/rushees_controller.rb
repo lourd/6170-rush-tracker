@@ -6,7 +6,7 @@ class RusheesController < ApplicationController
   before_filter :is_verified!
 
 	def index
-    @rushees = current_brother.fraternity.rushees
+  		@rushees = current_brother.fraternity.rushees
 	end
 
 	def new
