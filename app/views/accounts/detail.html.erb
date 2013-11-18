@@ -1,11 +1,11 @@
 <h1><%= @brother.fraternity.name %> Brother Account Details</h1>
 <h3><%= @brother.firstname + " " + @brother.lastname %> (<%= @brother.email %>)</h3>
 
-<p>Primary Contact For:</p>
+<h3>Primary Contact For:</h3>
 <ul>
 <% if @rushees.length > 0 %>
   <% @rushees.each do |rushee| %>
-    <li> <a href="/rushees/<%= rushee.id %>"><%= rushee.firstname + " " + rushee.lastname %></a></li>
+    <li><a href="/rushees/<%= rushee.id %>"><%= rushee.firstname + " " + rushee.lastname %></a></li>
   <% end %>
 <% end %>
 </ul>
@@ -15,7 +15,7 @@
 <br/>
 <br/>
 
-<p><b>Admin Controls:</b></p>
+<h3>Administrator Controls:</h3>
 <ul>
   <li><a href="#">Assign Rushee</a></li>
   <li><a onclick="return confirm('Are you sure you want to delete <%= @brother.firstname + " " + @brother.lastname %> (<%= @brother.email %>)?')" href="/accounts/deny/<%= @brother.id %>">Deactivate</a></li>
