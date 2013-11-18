@@ -2,7 +2,6 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   
   resources :rushees
   resources :actions
-  resources :brothers
   post "rushees/comment" => "rushees#comment"
 
   get "events/new"
