@@ -70,6 +70,12 @@ class RusheesController < ApplicationController
     redirect_to "/rushees/"+comment.rushee_id.to_s
   end
 
+  def commentDestroy
+  	@comment = Comment.find(params[:comment_id])
+  	@comment.destroy
+  end
+
+
 	def show
 		@comments = @rushee.comments
 	end
