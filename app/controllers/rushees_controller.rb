@@ -7,6 +7,7 @@ class RusheesController < ApplicationController
 
 	def index
   		@rushees = current_brother.fraternity.rushees
+      @cols = 3
 	end
 
 	def new
