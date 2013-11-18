@@ -12,6 +12,11 @@
             <% rushee = @rushees[i+col] %>
             <!-- put rushee shit here -->
             <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %>
+            <ul>
+              <li>From <%= rushee.hometown %></li>
+              <li>Lives in <%= rushee.dorm %></li>
+              <li>Sports: <%= rushee.sports %></li>
+            </ul>
             <!-- end rushee shit -->
             
             <% count = count + 1 %>
