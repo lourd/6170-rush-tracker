@@ -8,6 +8,8 @@ var ready = function() {
 var slideShow = function() {
   var currentID = 0;
 
+  alert("Press ESC to return to main site. Press F11 to view FullScreen!");
+
   $(document).keyup(function(e) {
     //Handle Escape Key Press  
     if (e.keyCode == 27) { 
