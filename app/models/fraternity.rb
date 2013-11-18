@@ -4,8 +4,12 @@ class Fraternity < ActiveRecord::Base
 	has_many :events
 	has_many :rushees
 
-	def self.verified_brothers 
+	def verified_brothers 
     	return self.brothers.where :is_verified => true
+  	end
+
+  	def pending_brothers
+  		return self.brothers.where :is_verified => false
   	end
 
 end
