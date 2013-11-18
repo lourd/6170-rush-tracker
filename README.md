@@ -3,12 +3,15 @@
 + Full Name: Benjamin I. Shaibu
 + Heroku Url: http://peaceful-bayou-5324.herokuapp.com/
 
+
 Detailed Design Documentation Can Be Found in the "docs" Directory of the Main Folder.
+
 
 Usage Notes:
 * The Database is pre-seeed with the following Admin:
   > username: random-engineers@mit.edu
   > password: adminpass
+
 
 During our MVP, we will focus on these core features that make up our application:
 * Creating an Admin Account
@@ -18,9 +21,11 @@ During our MVP, we will focus on these core features that make up our applicatio
 * Viewing All Rushees in a Presentation Mode
 
 
+
 Deployment Notes:
 * Ruby version: 2.0.0p247
 * Rails Version: 4.0.0
+
 
 Gems Used:
 * Devise
