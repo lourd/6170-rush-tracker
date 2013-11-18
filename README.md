@@ -1,6 +1,6 @@
 # 6.170 Final Project, Phase II
 
-+ Full Name: Benjamin I. Shaibu
++ Name: Dennis Smiley, Louis DeScioli, Matt Kerr, Benjamin I. Shaibu
 + Heroku Url: http://peaceful-bayou-5324.herokuapp.com/
 
 
@@ -8,9 +8,10 @@ Detailed Design Documentation Can Be Found in the "docs" Directory of the Main F
 
 
 Usage Notes:
-* The Database is pre-seeed with the following Admin:
-  > username: random-engineers@mit.edu
-  > password: adminpass
+* The Database seeded with the following Admin account:
+
+        username: random-engineers@mit.edu
+        password: adminpass
 
 
 During our MVP, we will focus on these core features that make up our application:
@@ -18,6 +19,7 @@ During our MVP, we will focus on these core features that make up our applicatio
 * Registering a Brother Account
 * Admin Verification of Brother Accounts
 * Creating and Updating a Rushee Profile
+* Commenting on Profiles
 * Viewing All Rushees in a Presentation Mode
 
 
