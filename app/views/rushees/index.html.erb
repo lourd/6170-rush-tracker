@@ -15,6 +15,9 @@
           <% if @rushees[i+col] != nil %>
             <% rushee = @rushees[i+col] %>
             <!-- put rushee shit here -->
+            <div id="picture-holder">
+              <%= image_tag rushee.picture.url(:medium) %>
+            </div>
             <h4><%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %></h4>
             <ul>
               <li>From <%= rushee.hometown %></li>
