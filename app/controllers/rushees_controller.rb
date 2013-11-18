@@ -126,6 +126,13 @@ class RusheesController < ApplicationController
 	  end
 	end
 
+  def delete
+    if current_brother.is_admin 
+      id = params[:id]
+      Rushee.destroy(id)
+    end
+    redirect_to rushees_path
+  end
 
 	private
 	# Never trust parameters from the scary internet, only allow the white list through.

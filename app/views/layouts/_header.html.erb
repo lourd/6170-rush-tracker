@@ -12,12 +12,8 @@
           <li><p class="navbar-text"><%= link_to "Settings", edit_brother_registration_path %></p></li>
           <li><p class="navbar-text"><%= link_to "Sign out", destroy_brother_session_path, :method => :delete %></p></li>
         <% else %>
-          <li><p class="navbar-text"><%= link_to "Sign In", new_brother_session_path %></p></li>
-          <li><p class="navbar-text"><%= link_to "Sign Up", new_brother_registration_path %></p></li>
+          <li><p class="navbar-text pull-right"><%= link_to "Sign In", new_brother_session_path %></p></li>
+          <li><p class="navbar-text pull-right"><%= link_to "Sign Up", new_brother_registration_path %></p></li>
         <% end %>
-      </ul>
-                 
-  <%#= link_to "Log out", log_out_path %>
-  <%#= link_to "Sign up", sign_up_path %>
-  <%#= link_to "log in", log_in_path %>
+      </ul>                
 </nav>

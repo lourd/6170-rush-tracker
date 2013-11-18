@@ -15,7 +15,7 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   get "accounts/invite"
   post "accounts/invite" => "accounts#processInvite"
   get "rushees/edit" => "rushees#edit"
-
+  get "rushees/delete/:id" => "rushees#delete"
   devise_for :brothers
 
   match '/presentation', to: 'rushees#present', via: 'get'
