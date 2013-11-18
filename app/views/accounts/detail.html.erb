@@ -19,6 +19,8 @@
 <ul>
   <% if @current_brother != @brother %>
     <li><a onclick="return confirm('Are you sure you want to delete <%= @brother.firstname + " " + @brother.lastname %> (<%= @brother.email %>)?')" href="/accounts/deny/<%= @brother.id %>">Deactivate</a></li>
+  <% else %>
+    You have no Admin Controls available for this user.
   <% end %>
 </ul>
 <% end %>
