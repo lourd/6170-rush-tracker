@@ -1,20 +1,25 @@
+<a href="/rushees/new">Add Rushee</a>
+
 <table class="table">
-	<thead>
-		<tr>
-			<th>
-				Rushees
-			</th>
-		</tr>
-	</thead>
-  <br/> <%= link_to "View Presentation", presentation_path %></p></li>
-	<tbody>
-		<% @rushees.each do |rushee| %>
-		  <tr>
-			  <td><%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %></td> 	
-		  </tr>
-		<% end %>
-		<tr>
-			<td><%= link_to 'Add rushee', new_rushee_url %></td>
-		</tr>
-	</tbody>
+
+  <% i = 0 %>
+  <% while i < @rushees.length %>
+    <tr>
+      <% count = 0 %>
+      <% for col in 0...@cols %>
+        <td>
+          <% if @rushees[i+col] != nil %>
+            <% rushee = @rushees[i+col] %>
+            <!-- put rushee shit here -->
+            <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %>
+            <!-- end rushee shit -->
+            
+            <% count = count + 1 %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+    <% i = i + count %>
+  <% end %> 
+
 </table>

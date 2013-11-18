@@ -14,11 +14,13 @@ class Brother < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # returns all verified brothers in a frat
+  # DEPRECATED -- use current_brother.fraternity.brothers
   def self.findAllByFraternityID fraternity_id
     return self.where :fraternity_id => fraternity_id, :is_verified => true
   end
 
   # returns all unverified brothers in a frat
+  # @deprecated - use fraternity.pending_brothers
   def self.findAllPendingByFraternityID fraternity_id
     return self.where :fraternity_id => fraternity_id, :is_verified => false
   end

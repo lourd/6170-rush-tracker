@@ -1,5 +1,8 @@
 <%= form_for @rushee, :html => {:class => "form-horizontal"} do |f| %>
     <%= render 'shared/rushee_error_messages' %>
+    <%= f.hidden_field :fraternity_id, :value => current_brother.fraternity_id %>
+    <%= f.hidden_field :action_status, :value => "None" %>
+    <%= f.hidden_field :bid_status, :value => "None" %>
     <%= f.text_field :firstname, :class => 'form-control', :placeholder => "First name" %>
     <%= f.text_field :lastname, :class => 'form-control', :placeholder => "Last name" %>
     <%= f.text_field :email, :class => 'form-control', :placeholder => "Email address" %>
@@ -8,7 +11,7 @@
     <%= f.text_field :twitter_url, :class => 'form-control', :placeholder => "Twitter URL"%>
     <div class="form-group">
       <label for="profileFile">Profile Picture</label>
-      <%= f.file_field :profile_picture_url, :id => "profileFile" %>
+      <%= f.file_field :picture, :id => "profileFile" %>
       <p class="help-block">Upload a picture for them</p>
     </div>
     <%= f.text_field :dorm, :class => 'form-control', :placeholder => "Dorm"%>
@@ -16,8 +19,7 @@
     <%= f.text_field :hometown, :class => 'form-control', :placeholder => "Hometown" %>
     <%= f.text_field :sports, :class => 'form-control', :placeholder => "Sports" %>
     <%= f.text_field :frats_rushing, :class => 'form-control', :placeholder => "Cross rushing with" %>
-    <%= f.collection_select(:primary_contact_id, Brother.all, :id, :firstname, include_blank: true) %>
-
+    Primary Contact: <%= f.collection_select(:primary_contact_id, Brother.findAllByFraternityID(current_brother.fraternity.id), :id, :firstname, include_blank: true) %>
 
   <div class="actions">
     <%= f.submit :class => "btn"%>

@@ -39,6 +39,10 @@ $screen-lg-min: 0px;
        url('../assets/varsity_regular-webfont.svg') format('svg');
 }
 
+body {
+	min-width: 1000px;
+}
+
 .my-container {
 	padding: 10px;
 }

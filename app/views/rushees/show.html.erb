@@ -7,13 +7,20 @@
   <tr>
     <td valign="top">
         <div id="picture-holder">
-          <p>Profile Picture</p>
+          <%= image_tag @rushee.picture.url(:medium) %>
         </div>
     </td>
     
     <td valign="top">
       <table class="table">
-        <tr><td>Primary Contact</td><td> <%= @rushee.assignedBrother %> </td></tr>
+        <tr><td>Primary Contact</td>
+          <td>
+          <% if @rushee.brother %>
+            <a href="/accounts/detail/<%= @rushee.brother.id %>"><%= @rushee.assignedBrother %></a>
+          <% else %>
+            <%= @rushee.assignedBrother %>
+          <% end %>
+        </td></tr>
         <tr><td>Cellphone</td><td><%= @rushee.cellphone %></td></tr>
         <tr><td>Dorm & Room Number</td><td><%= @rushee.dorm + " " + @rushee.room_number %></td></tr>
         <tr><td>Sports</td><td><%= @rushee.sports %></td></tr>
@@ -22,7 +29,7 @@
         <tr><td>Email</td><td><%= @rushee.email %></td></tr>
         <tr><td>Action Status</td><td><%= @rushee.action_status %></td></tr>
         <tr><td>Bid Status</td><td><%= @rushee.bid_status %></td></tr>
-        
+
       </table>
     </td>
   </tr>

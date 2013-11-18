@@ -6,7 +6,8 @@ class RusheesController < ApplicationController
   before_filter :is_verified!
 
 	def index
-    @rushees = current_brother.fraternity.rushees
+  		@rushees = current_brother.fraternity.rushees
+      @cols = 3
 	end
 
 	def new
@@ -40,7 +41,7 @@ class RusheesController < ApplicationController
 	 #    	render action: 'new'
 	 #  	end
 	 #  end
-		@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
+		@rushee = Rushee.new(rushee_params)
 		respond_to do |format|
 			if @rushee.save(rushee_params)
 				format.html { redirect_to @rushee, notice: 'Rushee was successfully created.' }
@@ -123,7 +124,10 @@ class RusheesController < ApplicationController
 	private
 	# Never trust parameters from the scary internet, only allow the white list through.
 	  def rushee_params
-	    params.require(:rushee).permit(:firstname, :lastname, :email, :cellphone, :facebook_url, :twitter_url, :profile_picture_url, :dorm, :room_number, :hometown, :sports, :frats_rushing, :primary_contact_id, :primary_contact_brother)
+	    params.require(:rushee).permit(:firstname, :lastname, :email, :cellphone, 
+	    	:facebook_url, :twitter_url, :picture, :dorm, :room_number, 
+	    	:hometown, :sports, :frats_rushing, :primary_contact_id, :fraternity_id,
+	    	:action_status, :bid_status)
 	  end
 
 	    # Use callbacks to share common setup or constraints between actions.
