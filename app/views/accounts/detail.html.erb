@@ -5,7 +5,7 @@
 <ul>
 <% if @rushees.length > 0 %>
   <% @rushees.each do |rushee| %>
-    <li><%= rushee.firstname + " " + rushee.lastname %></li>
+    <li> <a href="/rushees/<%= rushee.id %>"><%= rushee.firstname + " " + rushee.lastname %></a></li>
   <% end %>
 <% end %>
 </ul>
