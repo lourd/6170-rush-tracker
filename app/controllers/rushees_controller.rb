@@ -74,12 +74,11 @@ class RusheesController < ApplicationController
 	end
 
   def present
+    @rushees = current_brother.fraternity.rushees
     respond_to do |format|
-      format.html
-      format.json 
+      format.html { render :layout => false }
+      format.json { render json: @rushees }
     end
-    #render json: @rushees
-    render :layout => false 
   end
 
 	def update

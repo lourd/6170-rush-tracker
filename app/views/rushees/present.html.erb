@@ -21,20 +21,26 @@
 	            <p>Profile Picture</p>
             </div>
           </td>
-          <td id="informationCell">
-            <% rushee = @rushees.first %>
-            <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %><br />
-            <p>
-              email: <%= rushee.email %><br />
-              Primary Contact:  <%= rushee.assignedBrother %><br />
-              phone number: <%= rushee.cellphone %><br />
-              facebook page:  <%= rushee.facebook_url %><br />
-              dorm: <%= rushee.dorm %><br />
-              hometown: <%= rushee.hometown %><br />
-              sports: <%= rushee.sports %><br />
-              Also Rushing: <%= rushee.frats_rushing %><br />
-              
-              Bid?  <%= rushee.bid_status %>                      
+          <td id="informationCell" data-id="" data-rails-id="">
+            <% if @rushees.any? %>
+              <% rushee = @rushees.first %>
+              <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee), id: "slideName" %><br /><br />
+              <p>
+                Email: <span id="slideEmail"><%= rushee.email %></span><br />
+                Primary Contact: <span id="slidePrimary"><%= rushee.assignedBrother %></span><br />
+                Phone Number: <span id="slidePhone"><%= rushee.cellphone %></span><br />
+                Facebook Page:  <span id="slidefaceBook"><%= rushee.facebook_url %></span><br />
+                Dorm: <span id="slideDorm"><%= rushee.dorm %></span><br />
+                Hometown: <span id="slideHometown"><%= rushee.hometown %></span><br />
+                Sports: <span id="slideSports"><%= rushee.sports %></span><br />
+                Also Rushing: <span id="slideCompetingFrats"><%= rushee.frats_rushing %></span><br />
+                
+                Bid?  <span id="slideBidStatus"><%= rushee.bid_status %></span>
+              </p>
+            <% else %>
+              No Rushees at this time.
+            <% end %>   
+                               
           </td>
         </tr>
         <tr id="slideNavRow">
@@ -44,5 +50,8 @@
   </body>
 
 </html>
+<script type="text/javascript">
+  slideShow();
+</script>
 
 

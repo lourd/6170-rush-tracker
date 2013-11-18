@@ -47,6 +47,8 @@ td#pictureCell,#picture-holder {
 
 td#informationCell {
   font-size: 1.25em;
+  color: yellow;
+  width: 50%;
 }
 
 #lastSlide, #nextSlide, #exitCell {
@@ -61,4 +63,8 @@ tr#slideNavRow {
 
 tr#mainSlideRow {
   height: 80%;
+}
+
+#slideName {
+  font-size: 2em;
 }
