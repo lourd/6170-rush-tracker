@@ -4,8 +4,8 @@ class AccountsController < ApplicationController
   before_filter :is_verified!
   
   def index
-    @brothers = current_brother.fraternity.brothers
-    @pending_bros = Brother.findAllPendingByFraternityID current_brother.fraternity_id   
+    @brothers = current_brother.fraternity.verified_brothers
+    @pending_bros = current_brother.fraternity.pending_brothers 
   end
 
   def detail
