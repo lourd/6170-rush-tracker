@@ -15,15 +15,15 @@
             <%= link_to "Exit", rushees_path %>
           </td>
         </tr>
+        <% if @rushees.any? %>
+          <% rushee = @rushees.first %>
         <tr>
           <td id="pictureCell">
             <div id="picture-holder">
-	            <p>Profile Picture</p>
+	            <%= image_tag rushee.picture.url(:medium), id: "slideImage" %>
             </div>
           </td>
           <td id="informationCell" data-id="" data-rails-id="">
-            <% if @rushees.any? %>
-              <% rushee = @rushees.first %>
               <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee), id: "slideName" %><br /><br />
               <p>
                 Email: <span id="slideEmail"><%= rushee.email %></span><br />
@@ -37,13 +37,12 @@
                 
                 Action Status: <span id="slideActionStatus"><%= rushee.action_status %></span><br />
                 Bid?  <span id="slideBidStatus"><%= rushee.bid_status %></span>
-              </p>
-            <% else %>
-              No Rushees at this time.
-            <% end %>   
-                               
+              </p>                            
           </td>
         </tr>
+        <% else %>
+          No Rushees at this time.
+        <% end %>  
         <tr id="slideNavRow">
           <td><a id="lastSlide" href="#">Back</a></td>
           <td><a id="nextSlide" href="#">Next</a></td>

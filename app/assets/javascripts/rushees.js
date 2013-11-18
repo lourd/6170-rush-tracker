@@ -50,6 +50,7 @@ var slideShow = function() {
 var updatePage = function(rushee, requestedID) {
   $("#informationCell").attr("data-id", requestedID);
   $("#informationCell").attr("data-rails-id", rushee.id);
+  $("#slideImage").attr("src", rushee.picture_file_name);
 
   $("#slideName").html(rushee.firstname+" "+rushee.lastname);
   updatePrimaryContactName(rushee.primary_contact_id);
