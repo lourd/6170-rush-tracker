@@ -15,14 +15,25 @@
           <% if @rushees[i+col] != nil %>
             <% rushee = @rushees[i+col] %>
             <!-- put rushee shit here -->
-            <div id="picture-holder">
-              <%= image_tag rushee.picture.url(:medium) %>
-            </div>
+            <% if rushee.picture? %>
+              <div id="picture-holder2">
+                <a href="/rushees/<%= rushee.id %>">
+                  <%= image_tag rushee.picture.url(:medium) %>
+                </a>
+              </div>
+            <% else %>
+              <div id="picture-holder">
+                <a href="/rushees/<%= rushee.id %>">
+                  <%= image_tag rushee.picture.url(:medium) %>
+                </a>
+              </div>
+            <% end %>
+        
             <h4><%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %></h4>
             <ul>
-              <li>From <%= rushee.hometown %></li>
-              <li>Lives in <%= rushee.dorm %></li>
-              <li>Sports: <%= rushee.sports %></li>
+              <% if rushee.hometown? %><li>From <%= rushee.hometown %></li><% end %>
+              <% if rushee.dorm? %><li>Lives in <%= rushee.dorm %></li><% end %>
+              <% if rushee.sports? %><li>Sports: <%= rushee.sports %></li><% end %>
             </ul>
             <!-- end rushee shit -->
             

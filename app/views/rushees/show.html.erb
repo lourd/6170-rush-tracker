@@ -6,9 +6,16 @@
   </tr>
   <tr>
     <td valign="top">
-        <div id="picture-holder">
-          <%= image_tag @rushee.picture.url(:medium) %>
-        </div>
+        <% if @rushee.picture? %>
+          <div id="picture-holder2">
+            <%= image_tag @rushee.picture.url(:medium) %>
+          </div>
+        <% else %>
+          <div id="picture-holder">
+            <%= image_tag @rushee.picture.url(:medium) %>
+          </div>
+        <% end %>
+        
     </td>
     
     <td valign="top">
