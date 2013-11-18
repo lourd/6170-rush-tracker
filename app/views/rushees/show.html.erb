@@ -7,7 +7,7 @@
   <tr>
     <td valign="top">
         <div id="picture-holder">
-          <p>Profile Picture</p>
+          <%= image_tag @rushee.picture.url(:medium) %>
         </div>
     </td>
     
@@ -16,7 +16,7 @@
         <tr><td>Primary Contact</td>
           <td>
           <% if @rushee.brother %>
-            <%= @rushee.assignedBrother %>
+            <a href="/accounts/detail/<%= @rushee.brother.id %>"><%= @rushee.assignedBrother %></a>
           <% else %>
             <%= @rushee.assignedBrother %>
           <% end %>

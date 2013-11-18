@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
   
   def index
     @brothers = current_brother.fraternity.verified_brothers
-    @pending_bros = current_brother.fraternity.pending_brothers 
+    @pending_bros = current_brother.fraternity.pending_brothers
   end
 
   def detail

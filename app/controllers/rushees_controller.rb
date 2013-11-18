@@ -122,7 +122,7 @@ class RusheesController < ApplicationController
 	# Never trust parameters from the scary internet, only allow the white list through.
 	  def rushee_params
 	    params.require(:rushee).permit(:firstname, :lastname, :email, :cellphone, 
-	    	:facebook_url, :twitter_url, :profile_picture_url, :dorm, :room_number, 
+	    	:facebook_url, :twitter_url, :picture, :dorm, :room_number, 
 	    	:hometown, :sports, :frats_rushing, :primary_contact_id, :fraternity_id,
 	    	:action_status, :bid_status)
 	  end
