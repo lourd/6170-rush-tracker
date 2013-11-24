@@ -16,31 +16,6 @@ class RusheesController < ApplicationController
 	end
 
 	def create
-		# Check if the email given for a brother is valid before saving
-		# if rushee_params[:primary_contact_brother].present?
-		# 	primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
-		# 	if primary_contact
-	 #    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :primary_contact_id => primary_contact.id, :action_status => "None", :bid_status => "None"))
-	 #    	if @rushee.save
-	 #    		redirect_to @rushee, notice: 'Rushee was successfully created.'
-	 #    	else
-	 #    		flash[:alert] = 'Rushee was not successfully created'
-	 #    		render action: 'new'
-	 #    	end
-	 #    else
-	 #    	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
-	 #    	flash[:alert] = 'That email does not exist for a Brother'
-	 #    	render action: 'new'
-	 #    end
-	 #  else
-	 #  	@rushee = Rushee.new(rushee_params.merge(:fraternity_id => current_brother.fraternity_id, :action_status => "None", :bid_status => "None"))
-	 #  	if @rushee.save
-	 #  		redirect_to @rushee, notice: 'Rushee was successfully created'
-	 #  	else
-	 #  		flash[:alert] = 'Rushee was not successfully created'
-	 #    	render action: 'new'
-	 #  	end
-	 #  end
 		@rushee = Rushee.new(rushee_params)
 		respond_to do |format|
 			if @rushee.save(rushee_params)
@@ -89,32 +64,6 @@ class RusheesController < ApplicationController
   end
 
 	def update
-		# puts '>>>>>>>>>>>>>>>>> Rushee Params are <<<<<<<<<<<<<<<<<'
-		# puts rushee_params
-		# if rushee_params[:primary_contact_brother].present?
-		# 	primary_contact = Brother.find_by_email(rushee_params[:primary_contact_brother])
-		# 	if primary_contact
-		# 		puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Primary Contact exists <<<<<<<<<<<<<<<<<<<<<<<<<<<'
-	 #    	if @rushee.update(rushee_params.merge(:primary_contact_id => primary_contact.id))
-	 #    		redirect_to @rushee, notice: 'Rushee was successfully updated.'
-	 #    	else
-	 #    		flash[:alert] = 'Rushee was not successfully updated'
-	 #    		render action: 'edit'
-	 #    	end
-	 #    else
-	 #    	flash[:alert] = 'That email does not exist for a Brother'
-	 #    	render action: 'edit'
-	 #    end
-	 #  else
-	 #  	puts '>>>>>> No primary contact brother <<<<<<<'
-	 #  	if @rushee.update(rushee_params.merge(:primary_contact_id => nil))
-	 #  		puts '>>>>>>> We are here <<<<<<<<<<<'
-	 #  		redirect_to @rushee, notice: 'Rushee was successfully updated'
-	 #  	else
-	 #  		flash[:alert] = 'Rushee was not successfully updated'
-	 #    	render action: 'edit'
-	 #  	end
-	 #  end
 		respond_to do |format|
 			if @rushee.update(rushee_params)
 			format.html { redirect_to @rushee, notice: 'Rushee was successfully updated.' }
