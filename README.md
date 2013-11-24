@@ -19,6 +19,7 @@ During our MVP, we will focus on these core features that make up our applicatio
 * Registering a Brother Account
 * Admin Verification of Brother Accounts
 * Creating and Updating a Rushee Profile
+* Commenting on Profiles
 * Viewing All Rushees in a Presentation Mode
 
 
