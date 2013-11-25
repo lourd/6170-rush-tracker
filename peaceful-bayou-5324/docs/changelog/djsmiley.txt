@@ -1,2 +1,0 @@
-11/14/2013
-- added fraternity_id to event
