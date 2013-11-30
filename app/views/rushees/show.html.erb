@@ -1,4 +1,16 @@
-<table width="800px">
+ <div class="rushee-main">
+   <div class="rushee-header">
+     <h1 class="rushee-name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
+   </div>
+   <div class="rushee-figures-container">
+     
+   </div>
+   <div class="rushee-info-container">
+     
+   </div>
+ </div>
+
+<!-- <table width="800px">
   <tr>
     <td span="2">
       <h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
@@ -49,7 +61,7 @@
 <% if current_brother.is_admin %>
   <h3>Administrator Controls</h3>
   <a onclick="return confirm('Delete <%= @rushee.firstname + ' ' + @rushee.lastname %>?')" href="/rushees/delete/<%= @rushee.id %>">Delete <%= @rushee.firstname + ' ' + @rushee.lastname %></a>
-<% end %>
+<% end %> -->
 
 <h3>Comments</h3>
 <div class="comments-container">
