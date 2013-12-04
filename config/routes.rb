@@ -2,20 +2,16 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   
   resources :rushees
   resources :actions
+  resources :events
+
   post "rushees/comment" => "rushees#comment"
 
-  get "events/new"
-  get "events/edit"
-  get "events/delete"
-  get "events/" => "events#index"
   get "accounts/" => "accounts#index"
   get "accounts/detail/:id" => "accounts#detail"
   get "accounts/verify/:id" => "accounts#verify" 
   get "accounts/deny/:id" => "accounts#deny" 
   get "accounts/invite"
   post "accounts/invite" => "accounts#processInvite"
-  get "rushees/edit" => "rushees#edit"
-  get "rushees/delete/:id" => "rushees#delete"
   devise_for :brothers
 
   match '/presentation', to: 'rushees#present', via: 'get'

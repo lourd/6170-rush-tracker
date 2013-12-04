@@ -1,7 +1,7 @@
 class Rushee < ActiveRecord::Base
 
 	belongs_to :fraternity
-	belongs_to :brother, :foreign_key => "primary_contact_id"
+	belongs_to :primary_contact, :class_name => "brother", :foreign_key => "primary_contact_id"
 	has_many :attendances
 	has_many :events, through: :attendances
 	has_many :actions
@@ -13,8 +13,6 @@ class Rushee < ActiveRecord::Base
   validates :cellphone, uniqueness: true, allow_blank: true
   validates :firstname, presence: true
 
-  attr_accessor :primary_contact_brother
-
   def self.findAllByPrimaryContactID id
     self.where :primary_contact_id => id
   end
@@ -25,15 +23,6 @@ class Rushee < ActiveRecord::Base
 	    square: '200x200#',
 	    medium: '300x300>'
 	  }
-
-
-  def assignedBrother
-    if self.brother
-      brother.firstname + " "+ brother.lastname
-    else
-      "Unassigned"
-    end
-  end
 
   def validActionSelectStatuses
     return [["None", "None"], ["Stay the Course", "Stay the Course"], 

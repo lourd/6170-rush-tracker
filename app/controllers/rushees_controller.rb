@@ -75,12 +75,11 @@ class RusheesController < ApplicationController
 	  end
 	end
 
-  def delete
+  def destroy
     if current_brother.is_admin 
-      id = params[:id]
-      Rushee.destroy(id)
+      @rushee.destroy
+      redirect_to rushees_path
     end
-    redirect_to rushees_path
   end
 
 	private

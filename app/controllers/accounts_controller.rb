@@ -52,14 +52,14 @@ class AccountsController < ApplicationController
   end
 
   def processInvite
-    @firstname = params[:brother][:firstname]
-    @lastname = params[:brother][:lastname] 
-    @email = params[:brother][:email]
+    firstname = params[:brother][:firstname]
+    lastname = params[:brother][:lastname] 
+    email = params[:brother][:email]
 
     brother = Brother.new( 
-                  :firstname => @firstname, 
-                  :lastname  => @lastname,
-                  :email => @email,
+                  :firstname => firstname, 
+                  :lastname  => lastname,
+                  :email => email,
                   :password => params[:brother][:password],
                   :password_confirmation => params[:brother][:password],
                   :fraternity_id => current_brother.fraternity_id,
