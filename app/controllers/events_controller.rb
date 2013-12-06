@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 
   def new
     if !current_brother.is_admin
-      redirect_to rushees, notice: 'Only admins may create events'
+      redirect_to events_path, notice: 'Only admins may create events'
     end
 
     @event = Event.new
@@ -16,18 +16,18 @@ class EventsController < ApplicationController
 
   def create
     if !current_brother.is_admin
-      redirect_to rushees, notice: 'Only admins may create events'
+      redirect_to events_path, notice: 'Only admins may create events'
     end
 
     @event = Event.new(event_params)
 
     if @event.save(event_params)
-      redirect_to rushees, notice: 'Event was succesfully created'
+      redirect_to events_path, notice: 'Event was succesfully created'
     else
-      redirect_to rushees, notice: 'Event was not succesfully created'
+      redirect_to events_path, notice: 'Event was not succesfully created'
     end
   end
-  
+
   def edit
   end
 
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
   private 
 
   def event_params
-    params.require(:event).permit(:name, :date)
+    params.require(:event).permit(:name, :date, :fraternity_id)
   end
 
   def is_verified!

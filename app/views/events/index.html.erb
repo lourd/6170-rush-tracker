@@ -7,12 +7,13 @@
 <% end %>
 
 <% if @events.length > 0 %>
-  <table>
+  <table class ="table">
     <tr>
     </tr>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td><td><%= event.date %></td>
+        <td><%= link_to "#{event.name}", event_path(event) %></td>
+        <td><%= event.date %></td>
       </tr>
 
     <% end %>
