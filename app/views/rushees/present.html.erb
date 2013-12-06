@@ -27,7 +27,7 @@
               <%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee), id: "slideName" %><br /><br />
               <p>
                 Email: <span id="slideEmail"><%= rushee.email %></span><br />
-                Primary Contact: <span id="slidePrimary"><%= rushee.assignedBrother %></span><br />
+                Primary Contact: <span id="slidePrimary"><%= rushee.primaryContactName %></span><br />
                 Phone Number: <span id="slidePhone"><%= rushee.cellphone %></span><br />
                 Facebook Page:  <span id="slidefaceBook"><%= rushee.facebook_url %></span><br />
                 Dorm: <span id="slideDorm"><%= rushee.dorm %></span><br />

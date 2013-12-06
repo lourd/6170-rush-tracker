@@ -5,7 +5,7 @@ class Brother < ActiveRecord::Base
 	has_many :actions, through: :action_brothers
 	has_many :comments
 	has_many :approvals
-	has_many :rushees, :foreign_key => "primary_contact_id"
+	has_many :rushees, foreign_key: :primary_contact_id
 
 
   # Include default devise modules. Others available are:
@@ -30,6 +30,6 @@ class Brother < ActiveRecord::Base
     bro = Brother.find id
     bro.is_verified = true
     bro.save() 
-  end
+  end      
 
 end
