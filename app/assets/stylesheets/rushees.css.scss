@@ -9,6 +9,7 @@ ul.rushees {
 }
 
 .rushee-outer {
+	position: relative;
 	height: 200px;
 	width: 200px;
 	float: left;
@@ -17,9 +18,32 @@ ul.rushees {
 	margin: 10px;
 	border: solid 1px #DDD;
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 4px 0px;
+	z-index: 0;
+}
+
+.rushee-hover.hideable {
+	position: absolute;
+	height: 180px;
+	width: 180px;
+	color: black;
+	background-color: black;
+	opacity: 0;
+	transition:opacity .15s linear;
+	z-index: 2;
+  	/*transition: visibility 0.5s;*/
+}
+
+/*The div overlay for the rushees pictures*/
+.rushee-hover:hover {
+	opacity: 0.5;
+}
+
+.overlay-btn {
+	color: white;
 }
 
 li img {
+	position: absolute;
 	height: 180px;
 	width: 180px;
 	border: 1px solid #C9CCD3;

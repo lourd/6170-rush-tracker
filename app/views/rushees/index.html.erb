@@ -2,10 +2,14 @@
     <% @rushees.each do |rushee| %>
       <li>
         <div class="rushee-outer">
-          <%= link_to image_tag(rushee.picture.url(:medium)), rushee_path(rushee), class: "rushee-image" %>
-          <div class="rushee-hover hideable">
-            <p class="rushee-name"><%= "#{rushee.firstname} #{rushee.lastname}" %></p>
-          </div>
+          <%= image_tag(rushee.picture.url(:medium), class: "rushee-image") %>
+          <%= link_to rushee_path(rushee) do %>
+            <div class="rushee-hover hideable">
+              <p class="rushee-name"><%= "#{rushee.firstname} #{rushee.lastname}" %></p>
+              <i class="fa fa-check fa-2x overlay-btn"></i>
+              <i class="fa fa-arrow-up fa-2x overlay-btn"></i>
+            </div>
+          <% end %>
         </div>
       </li>
     <% end %>
