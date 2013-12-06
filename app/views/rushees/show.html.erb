@@ -23,7 +23,7 @@
         <tr><td>Primary Contact</td>
           <td>
           <% if @rushee.primary_contact_id  %>
-            <a href="/accounts/detail/<%= @rushee.primary_contact_id %>"><%= Brother.find(@rushee.primary_contact_id).firstname + " " + Brother.find(@rushee.primary_contact_id).lastname %></a>
+            <a href="/accounts/detail/<%= @rushee.primary_contact_id %>"><%= @rushee.primaryContactName %></a>
           <%  else %>
             None
           <% end %>

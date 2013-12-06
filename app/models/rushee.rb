@@ -1,7 +1,7 @@
 class Rushee < ActiveRecord::Base
 
 	belongs_to :fraternity
-	belongs_to :primary_contact, :class_name => "brother", :foreign_key => "primary_contact_id"
+	belongs_to :primary_contact, class_name: "Brother"
 	has_many :attendances
 	has_many :events, through: :attendances
 	has_many :actions
@@ -39,5 +39,13 @@ class Rushee < ActiveRecord::Base
 
   def validBidStatuses
     return ["None", "Offered", "Accepted", "Rejected"]
+  end
+
+  def primaryContactName
+    if primary_contact
+      primary_contact.firstname + " " + primary_contact.lastname
+    else
+      "Unassigned"
+    end
   end
 end
