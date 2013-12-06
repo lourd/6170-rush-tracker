@@ -22,10 +22,10 @@
       <table class="table">
         <tr><td>Primary Contact</td>
           <td>
-          <% if @rushee.primary_contact %>
-            <a href="/accounts/detail/<%= @rushee.brother.id %>"><%= @rushee.assignedBrother %></a>
-          <% else %>
-            <%= @rushee.assignedBrother %>
+          <% if @rushee.primary_contact_id  %>
+            <a href="/accounts/detail/<%#= @rushee.brother.id %>"><%= Brother.find(@rushee.primary_contact_id).firstname + " " + Brother.find(@rushee.primary_contact_id).lastname %></a>
+          <%  else %>
+            None
           <% end %>
         </td></tr>
         <tr><td>Cellphone</td><td><%= @rushee.cellphone %></td></tr>

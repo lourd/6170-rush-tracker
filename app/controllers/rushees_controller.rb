@@ -63,17 +63,28 @@ class RusheesController < ApplicationController
     end
   end
 
-	def update
-		respond_to do |format|
-			if @rushee.update(rushee_params)
-			format.html { redirect_to @rushee, notice: 'Rushee was successfully updated.' }
-			format.json { render action: 'show', status: :created, location: @rushee }
-			else
-			format.html { render action: 'new' }
-			format.json { render json: @rushee.errors, status: :unprocessable_entity }
-			end
-	  end
-	end
+  def update
+
+    send_reminder = false
+    if @rushee.primary_contact != rushee_params[:rushee][:primary_contact]
+      send_reminder = true
+    end
+
+    respond_to do |format|
+      if @rushee.update(rushee_params)
+        format.html { redirect_to @rushee, notice: 'Rushee was successfully updated.' }
+        format.json { render action: 'show', status: :created, location: @rushee }
+
+        if send_reminder
+          # do send reminder!!!
+        end
+
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @rushee.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy
     if current_brother.is_admin 
