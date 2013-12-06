@@ -66,11 +66,11 @@ class RusheesController < ApplicationController
 	def update
 		respond_to do |format|
 			if @rushee.update(rushee_params)
-			format.html { redirect_to @rushee, notice: 'Rushee was successfully updated.' }
-			format.json { render action: 'show', status: :created, location: @rushee }
+    		format.html { redirect_to @rushee, notice: 'Rushee was successfully updated.' }
+    		format.json { render action: 'show', status: :created, location: @rushee }
 			else
-			format.html { render action: 'new' }
-			format.json { render json: @rushee.errors, status: :unprocessable_entity }
+  			format.html { render action: 'new' }
+  			format.json { render json: @rushee.errors, status: :unprocessable_entity }
 			end
 	  end
 	end

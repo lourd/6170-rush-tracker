@@ -3,19 +3,21 @@ class EventsController < ApplicationController
   before_filter :is_verified!
   
   def index
-    @events = Event.findAllByFraternityID current_brother.fraternity_id
+    @events = current_brother.fraternity.events
   end
 
   def new
-    if ! current_brother.is_admin
+    if !current_brother.is_admin
       redirect_to rushees, notice: 'Only admins may create events'
+    end
 
     @event = Event.new
   end
 
   def create
-    if ! current_brother.is_admin
+    if !current_brother.is_admin
       redirect_to rushees, notice: 'Only admins may create events'
+    end
 
     @event = Event.new(event_params)
 
@@ -23,19 +25,20 @@ class EventsController < ApplicationController
       redirect_to rushees, notice: 'Event was succesfully created'
     else
       redirect_to rushees, notice: 'Event was not succesfully created'
-
+    end
+  end
+  
   def edit
-
   end
 
   def delete
   end
   
-    
   private 
 
   def event_params
     params.require(:event).permit(:name, :date)
+  end
 
   def is_verified!
     if !current_brother.is_verified    

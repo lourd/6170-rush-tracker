@@ -1,5 +1,11 @@
 <h1>Your Frat's Events</h1>
 
+<% if current_brother.is_admin %>
+  <ul>
+    <%= link_to 'Create New Event', new_event_path %> 
+  </ul>
+<% end %>
+
 <% if @events.length > 0 %>
   <table>
     <tr>

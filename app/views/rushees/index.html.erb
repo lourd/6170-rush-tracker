@@ -14,7 +14,6 @@
         <td>
           <% if @rushees[i+col] != nil %>
             <% rushee = @rushees[i+col] %>
-            <!-- put rushee shit here -->
             <% if rushee.picture? %>
               <div id="picture-holder2">
                 <a href="/rushees/<%= rushee.id %>">
@@ -35,7 +34,6 @@
               <% if rushee.dorm? %><li>Lives in <%= rushee.dorm %></li><% end %>
               <% if rushee.sports? %><li>Sports: <%= rushee.sports %></li><% end %>
             </ul>
-            <!-- end rushee shit -->
             
             <% count = count + 1 %>
           <% end %>
