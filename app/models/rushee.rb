@@ -40,4 +40,12 @@ class Rushee < ActiveRecord::Base
   def validBidStatuses
     return ["None", "Offered", "Accepted", "Rejected"]
   end
+
+  def primaryContactName
+    if self.primary_contact
+      return primary_contact.firstname + " " + primary_contact.lastname
+    else
+      "Unassigned"
+    end
+  end
 end
