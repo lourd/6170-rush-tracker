@@ -28,6 +28,15 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @event = Event.find(params[:id])
+    @rushees = @event.rushees
+  end
+
+  def addRushee
+    # Add Rushee
+  end
+
   def edit
   end
 

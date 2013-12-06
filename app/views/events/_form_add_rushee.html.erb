@@ -1,0 +1,9 @@
+<%= form_tag(action: :addRushee, method: "post", class: "form-horizontal") do %>
+  <%= label_tag :name, "Add Rushee:" %>
+  <%= text_field_tag :name %>
+
+  <div class="actions">
+    <%= submit_tag("Add Rushee") %>
+  </div>
+
+<% end %>

@@ -1,0 +1,13 @@
+<h1><%= @event.name%> Event Details</h1>
+<h3>Event Date: <%= @event.date.strftime("%d-%m-%Y") %></h3>
+
+<h3>Attending Rushees:</h3>
+<ul>
+  <% if @rushees %>
+    <% @rushees.each do |rushee| %>
+      <%= link_to rushee.firstname + " " + rushee.lastname, rushee_path(rushee) %>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= render 'form_add_rushee' %>

@@ -5,6 +5,7 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   resources :events
 
   post "rushees/comment" => "rushees#comment"
+  post "events/addRushee" => "events#addRushee"
 
   get "accounts/" => "accounts#index"
   get "accounts/detail/:id" => "accounts#detail"

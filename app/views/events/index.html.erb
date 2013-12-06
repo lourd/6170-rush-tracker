@@ -13,7 +13,7 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= link_to "#{event.name}", event_path(event) %></td>
-        <td><%= event.date %></td>
+        <td><%= event.date.strftime("%d-%m-%Y") %></td>
       </tr>
 
     <% end %>
