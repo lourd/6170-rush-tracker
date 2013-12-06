@@ -66,7 +66,7 @@ class RusheesController < ApplicationController
   def update
 
     send_reminder = false
-    if @rushee.primary_contact != rushee_params[:rushee][:primary_contact]
+    if true #@rushee.primary_contact != rushee_params[:rushee][:primary_contact]
       send_reminder = true
     end
 
