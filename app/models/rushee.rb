@@ -48,4 +48,16 @@ class Rushee < ActiveRecord::Base
       "Unassigned"
     end
   end
+
+  # Assumes the name is given is the full name
+  def self.findByName(name)
+    firstName = name.split()[0]
+    lastName = name.split()[1]
+    return Rushee.find_by(firstname: firstName, lastname: lastName)
+  end
+
+  def self.findByEmail(email)
+    return Rushee.find_by(email: email)
+  end
+
 end

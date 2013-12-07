@@ -1,6 +1,10 @@
 <%= form_tag(action: :addRushee, method: "post", class: "form-horizontal") do %>
-  <%= label_tag :name, "Add Rushee:" %>
-  <%= text_field_tag :name %>
+  <%= hidden_field_tag :event_id, @event.id %>
+  <%= label_tag :rushee, "Add Rushee:" %>
+  <%= text_field_tag :rushee, nil, placeholder: "Full Name or Email" %>
+
+<br>
+<br>
 
   <div class="actions">
     <%= submit_tag("Add Rushee") %>
