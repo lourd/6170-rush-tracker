@@ -1,4 +1,4 @@
-<table width="800px">
+<table width="1000px">
   <tr>
     <td span="2">
       <h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
@@ -39,6 +39,18 @@
 
       </table>
     </td>
+
+    <% if @rushee.events %>
+      <td valign="top">
+        <table class="table">
+          <tr><th>Event</th><th>Date</th></tr>
+          <% @rushee.events.each do |event| %>
+            <tr><td><%= link_to event.name, event_path(event) %></td><td><%= event.date.strftime("%d-%m-%Y") %></td></tr>
+          <% end %>
+        </table>
+      </td>
+    <% end %>
+
   </tr>
 </table>
 

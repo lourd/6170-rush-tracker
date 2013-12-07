@@ -3,7 +3,7 @@ class Rushee < ActiveRecord::Base
 	belongs_to :fraternity
 	belongs_to :primary_contact, class_name: "Brother"
 	has_many :attendances
-	has_many :events, through: :attendances
+	has_many :events, through: :attendances, order: 'date desc'
 	has_many :actions
 	has_many :comments
 	has_many :approvals
