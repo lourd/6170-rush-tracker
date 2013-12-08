@@ -4,7 +4,7 @@ class Brother < ActiveRecord::Base
 	has_many :action_brothers
 	has_many :actions, through: :action_brothers
 	has_many :comments
-	has_many :approvals
+	has_many :approvals, dependent: :destroy
 	has_many :rushees, foreign_key: :primary_contact_id
 
 
@@ -30,6 +30,10 @@ class Brother < ActiveRecord::Base
     bro = Brother.find id
     bro.is_verified = true
     bro.save() 
+  end
+
+  def full_name
+    self.firstname + " " + self.lastname
   end      
 
 end
