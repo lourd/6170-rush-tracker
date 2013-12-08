@@ -49,8 +49,11 @@
 </td>
 <td valign="top">
   <h3>Rush Action Feed</h3>
+  <% loopd = 0 %>
   <% @actions.reverse_each do |action| %>
     <p><%= action.description %> (<%= time_ago_in_words(action.created_at) %> ago)</p>
+    <% loopd = loopd + 1 %>
+    <% break if loopd >= @max_feed %>
   <% end %>
 </td>
 </tr>
