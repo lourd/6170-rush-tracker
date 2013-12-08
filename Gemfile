@@ -58,3 +58,6 @@ gem 'devise'
 # Uploading pictures/files
 gem 'paperclip'
 gem 'aws-sdk'
+
+#Using Twitter
+gem 'twitter'

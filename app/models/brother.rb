@@ -30,6 +30,38 @@ class Brother < ActiveRecord::Base
     bro = Brother.find id
     bro.is_verified = true
     bro.save() 
-  end      
+  end
 
+
+ ##Methods to modificed a Rushee's associated Approvals. 
+
+  # Verifies an approval exists between a brother and the matching rushee
+  # If there is not one, the method creates new approval
+  def verifyApproval(rushee)
+    if !self.approvals.find_by(rushee: rushee)
+      self.approvals.create(rushee: rushee)
+    end
+  end
+
+  # Mark Rushee as Met by Brother
+  def meet(rushee)
+    verifyApproval(rushee)
+    self.approvals.find_by(rushee: rushee).update_attribute("met", true)
+  end
+
+  def unmeet(brother)
+    verifyApproval(rushee)    
+    self.approvals.find_by(rushee: rushee).update_attribute("met", false)
+  end
+
+  #Change Votes for Rushee
+  def upVote(rushee)
+    verifyApproval(rushee)
+    self.approvals.find_by(rushee: rushee).update_attribute("vote", true)   
+  end   
+  
+  def removeVote(rushee)
+    verifyApproval(rushee)    
+    self.approvals.find_by(rushee: rushee).update_attribute("vote", false)
+  end
 end

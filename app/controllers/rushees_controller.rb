@@ -1,15 +1,14 @@
 class RusheesController < ApplicationController
 
-	before_action :set_rushee, only: [:show, :edit, :update, :destroy]
   layout 'application', except: :present
 	before_filter :authenticate_brother!
   before_filter :is_verified!
+  before_action :set_rushee, only: [:edit, :upVote, :removeVote, :meet, :unmeet]
 
 	def index
-  		@rushees = current_brother.fraternity.rushees
-                @cols = 3
-                @actions = Action.where( brother_id: current_brother.id ).order(:created_at)
-
+    @rushees = current_brother.fraternity.rushees
+    @cols = 3
+    @actions = Action.where( brother_id: current_brother.id ).order(:created_at)
 	end
 
 	def new
@@ -24,12 +23,12 @@ class RusheesController < ApplicationController
 				format.html { redirect_to @rushee, notice: 'Rushee was successfully created.' }
 				format.json { render action: 'show', status: :created, location: @rushee }
 
-                                action = Action.new
-                                action.brother_id = @rushee.primary_contact_id
-                                action.rushee_id = @rushee.id 
-                                action.date = Time.now
-                                action.description = "You're a primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
-                                action.save()
+        action = Action.new
+        action.brother_id = @rushee.primary_contact_id
+        action.rushee_id = @rushee.id 
+        action.date = Time.now
+        action.description = "You're a primary contact for " + @rushee.fullName + "."
+        action.save()
 			else
 				format.html { render action: 'new' }
 				format.json { render json: @rushee.errors, status: :unprocessable_entity }
@@ -38,7 +37,6 @@ class RusheesController < ApplicationController
 	end
 
 	def edit
-		@rushee = Rushee.find(params[:id])
 	end
 
 	def delete
@@ -91,7 +89,7 @@ class RusheesController < ApplicationController
           action.brother_id = new_bro
           action.rushee_id = @rushee.id 
           action.date = Time.now
-          action.description = "You're a primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
+          action.description = "You're a primary contact for " + @rushee.fullName + "."
           action.save()
 
           # notify the other guy that the rushee doesn't belong to him anymore
@@ -99,7 +97,7 @@ class RusheesController < ApplicationController
           action2.brother_id = old_bro
           action2.rushee_id = @rushee.id
           action2.date = Time.now
-          action2.description = "You are no longer primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
+          action2.description = "You are no longer primary contact for " + @rushee.fullName + "."
           action2.save()
         end
 
@@ -139,6 +137,31 @@ class RusheesController < ApplicationController
       redirect_to :root
       return
     end
+  end
+
+  #Actions to Change Vote and Met Brother Counts
+  def upVote
+    current_brother.upVote(@rushee)
+  end
+
+  def removeVote
+    current_brother.removeVote(@rushee)
+  end
+
+  def meet
+    current_brother.meet(@rushee)
+  end
+
+  def unmeet
+    current_brother.unmeet(@rushee)
+  end
+
+  #Helper Functions
+
+  private
+
+  def set_rushee
+    @rushee = Rushee.find(params[:id])
   end
 
 end

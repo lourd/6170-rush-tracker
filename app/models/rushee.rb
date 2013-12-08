@@ -41,12 +41,17 @@ class Rushee < ActiveRecord::Base
     return ["None", "Offered", "Accepted", "Rejected"]
   end
 
+  ##Methods to Get Full Names
   def primaryContactName
     if primary_contact
       primary_contact.firstname + " " + primary_contact.lastname
     else
       "Unassigned"
     end
+  end
+
+  def fullName
+    firstname + " " + lastname
   end
 
   # Assumes the name is given is the full name
@@ -60,4 +65,22 @@ class Rushee < ActiveRecord::Base
     return Rushee.find_by(email: email)
   end
 
+  #Get Facebook Image URL
+  def facebookProfilePicURL
+    #   https://www.facebook.com/user_name
+    if facebook_url
+      return "https://graph.facebook.com/[PROFILE_ID]/picture"
+    else
+      None
+    end
+  end
+
+  ##Get Approval Counts
+  def metBrotherCount
+    self.approvals.where(met: true).count
+  end
+
+  def upVoteCount
+    self.approvals.where(vote: true).count
+  end
 end
