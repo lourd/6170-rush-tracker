@@ -78,10 +78,12 @@ var updatePrimaryContactName = function(id) {
 }
 
 //Listeners for Normal Page Loads and Link_Tos
-$(document).on('page:load', ready);
-$(document).ready( function() {
+// $(document).on('page:load', ready);
+$(document).ready(function(){
 
-  $(".rushee-image").
-
+  // Changes color of buttons on rushee index overlay, indiciating true or false
+  $(".overlay-btn").click(function(){
+    $(this).toggleClass("btn-true");
+  });
 });
 
