@@ -23,6 +23,13 @@ class RusheesController < ApplicationController
 			if @rushee.save(rushee_params)
 				format.html { redirect_to @rushee, notice: 'Rushee was successfully created.' }
 				format.json { render action: 'show', status: :created, location: @rushee }
+
+                                action = Action.new
+                                action.brother_id = @rushee.primary_contact_id
+                                action.rushee_id = @rushee.id 
+                                action.date = Time.now
+                                action.description = "You're a primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
+                                action.save()
 			else
 				format.html { render action: 'new' }
 				format.json { render json: @rushee.errors, status: :unprocessable_entity }
