@@ -72,4 +72,8 @@ class Rushee < ActiveRecord::Base
     return Rushee.find_by(email: email)
   end
 
+  def full_name
+    self.firstname + " " + self.lastname
+  end
+
 end
