@@ -3,7 +3,9 @@
   <li><a href="/rushees/new">Add Rushee</a></li>
 </ul>
 
-
+<table border="0">
+  <tr>
+    <td>
 <table class="table">
 
   <% i = 0 %>
@@ -43,4 +45,13 @@
     <% i = i + count %>
   <% end %> 
 
+</table>
+</td>
+<td valign="top">
+  <h3>Rush Action Feed</h3>
+  <% @actions.reverse_each do |action| %>
+    <p><%= action.description %> <%= time_ago_in_words(action.created_at) %></p>
+  <% end %>
+</td>
+</tr>
 </table>

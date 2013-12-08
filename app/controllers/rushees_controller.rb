@@ -7,7 +7,9 @@ class RusheesController < ApplicationController
 
 	def index
   		@rushees = current_brother.fraternity.rushees
-      @cols = 3
+                @cols = 3
+                @actions = Action.where( brother_id: current_brother.id ).order(:created_at)
+
 	end
 
 	def new
@@ -64,9 +66,10 @@ class RusheesController < ApplicationController
   end
 
   def update
-
     send_reminder = false
-    if true #@rushee.primary_contact != rushee_params[:rushee][:primary_contact]
+    old_bro = @rushee.primary_contact_id
+    new_bro = params[:rushee][:primary_contact_id]
+    if old_bro != new_bro
       send_reminder = true
     end
 
@@ -76,7 +79,21 @@ class RusheesController < ApplicationController
         format.json { render action: 'show', status: :created, location: @rushee }
 
         if send_reminder
-          # do send reminder!!!
+          # create action for whoever gets the rushee 
+          action = Action.new
+          action.brother_id = new_bro
+          action.rushee_id = @rushee.id 
+          action.date = Time.now
+          action.description = "You're a primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
+          action.save()
+
+          # notify the other guy that the rushee doesn't belong to him anymore
+          action2 = Action.new
+          action2.brother_id = old_bro
+          action2.rushee_id = @rushee.id
+          action2.date = Time.now
+          action2.description = "You are no longer primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
+          action2.save()
         end
 
       else
