@@ -3,7 +3,7 @@ class RusheesController < ApplicationController
   layout 'application', except: :present
 	before_filter :authenticate_brother!
   before_filter :is_verified!
-  before_action :set_rushee, only: [:edit, :upVote, :removeVote, :meet, :unmeet]
+  before_action :set_rushee, only: [:show, :edit, :update, :destroy, :upVote, :removeVote, :meet, :unmeet]
 
 	def index
     @rushees = current_brother.fraternity.rushees

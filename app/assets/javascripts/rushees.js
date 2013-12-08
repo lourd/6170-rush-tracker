@@ -77,6 +77,12 @@ var updatePrimaryContactName = function(id) {
     });
 }
 
+var clickUpVote = function() {
+}
+
+var clickMet = function() {
+}
+
 //Listeners for Normal Page Loads and Link_Tos
 // $(document).on('page:load', ready);
 $(document).ready(function(){
