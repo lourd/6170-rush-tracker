@@ -1,4 +1,4 @@
-<%= form_for @action, as: :action, :html => {:class => "form-horizontal"}, :url => url_for(:controller => 'actions', :action => 'create') do |f| %>
+<%= form_for @action, as: :actionr, :html => {:class => "form-horizontal"}, :url => url_for(:controller => 'actions', :action => 'create') do |f| %>
 
   Brother 
   <p>
@@ -14,12 +14,12 @@
 
   Description
   <p>
-    <%= f.text_area :description %>
+  <%= f.text_area :description, :class => "desctext" %>
   </p>
  
   
   
-    <%= f.submit %>
+    <%= f.submit :class => "btn" %>
  
 
 <% end %> 
