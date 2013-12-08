@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 
 	belongs_to	:fraternity
-	has_many :attendances
+	has_many :attendances, dependent: :destroy
 	has_many :rushees, through: :attendances
 
   validates :date, presence: true
