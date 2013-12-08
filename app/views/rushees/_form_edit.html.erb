@@ -1,22 +1,22 @@
 <%= form_for @rushee, :html => {:class => "form-horizontal"} do |f| %>
     <%= render 'shared/rushee_error_messages' %>
-    <%= f.text_field :firstname, :class => 'form-control', :placeholder => "First name" %>
-    <%= f.text_field :lastname, :class => 'form-control', :placeholder => "Last name" %>
-    <%= f.text_field :email, :class => 'form-control', :placeholder => "Email address" %>
-    <%= f.text_field :cellphone, :class => 'form-control', :placeholder => "Cell phone" %>
-    <%= f.text_field :facebook_url, :class => 'form-control', :placeholder => "Facebook URL"%>
-    <%= f.text_field :twitter_url, :class => 'form-control', :placeholder => "Twitter URL"%>
+    Firstname <%= f.text_field :firstname, :class => 'form-control', :placeholder => "First name" %>
+    Lastname <%= f.text_field :lastname, :class => 'form-control', :placeholder => "Last name" %>
+    Email <%= f.text_field :email, :class => 'form-control', :placeholder => "Email address" %>
+    Cell Phone <%= f.text_field :cellphone, :class => 'form-control', :placeholder => "Cell phone" %>
+    Facebook URL <%= f.text_field :facebook_url, :class => 'form-control', :placeholder => "Facebook URL"%>
+    Twitter URL <%= f.text_field :twitter_url, :class => 'form-control', :placeholder => "Twitter URL"%>
     <br>
     <div class="form-group">
       <label for="profileFile">Profile Picture</label>
       <%= f.file_field :picture, :id => "profileFile" %>
       <p class="help-block">Upload a picture for them</p>
     </div>
-    <%= f.text_field :dorm, :class => 'form-control', :placeholder => "Dorm"%>
-    <%= f.text_field :room_number, :class => 'form-control', :placeholder => 'Room number' %>
-    <%= f.text_field :hometown, :class => 'form-control', :placeholder => "Hometown" %>
-    <%= f.text_field :sports, :class => 'form-control', :placeholder => "Sports" %>
-    <%= f.text_field :frats_rushing, :class => 'form-control', :placeholder => "Cross rushing with" %>
+    Dorm <%= f.text_field :dorm, :class => 'form-control', :placeholder => "Dorm"%>
+    Room Number <%= f.text_field :room_number, :class => 'form-control', :placeholder => 'Room number' %>
+    Home Town <%= f.text_field :hometown, :class => 'form-control', :placeholder => "Hometown" %>
+    Sports <%= f.text_field :sports, :class => 'form-control', :placeholder => "Sports" %>
+    Cross rushing with <%= f.text_field :frats_rushing, :class => 'form-control', :placeholder => "Cross rushing with" %>
     Primary Contact:  <%= f.collection_select(:primary_contact_id, Brother.findAllByFraternityID(current_brother.fraternity.id), :id, :firstname, include_blank: true) %> <br>
     Action Status:  <%= f.select(:action_status, @rushee.validActionSelectStatuses) %> <br>
     Bid Status:  <%= f.select(:bid_status, @rushee.validBidSelectStatuses) %> <br>

@@ -7,7 +7,10 @@ class RusheesController < ApplicationController
 
 	def index
   		@rushees = current_brother.fraternity.rushees
-      @approvals = current_brother.approvals
+      # @approvals = current_brother.approvals
+      @actions = Action.where( brother_id: current_brother.id ).order(:created_at)
+      @max_feed = 5  
+
 	end
 
 	def new
@@ -21,6 +24,13 @@ class RusheesController < ApplicationController
 			if @rushee.save(rushee_params)
 				format.html { redirect_to @rushee, notice: 'Rushee was successfully created.' }
 				format.json { render action: 'show', status: :created, location: @rushee }
+
+                                action = Action.new
+                                action.brother_id = @rushee.primary_contact_id
+                                action.rushee_id = @rushee.id 
+                                action.date = Time.now
+                                action.description = "You're a primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
+                                action.save()
 			else
 				format.html { render action: 'new' }
 				format.json { render json: @rushee.errors, status: :unprocessable_entity }
@@ -63,24 +73,49 @@ class RusheesController < ApplicationController
     end
   end
 
-	def update
-		respond_to do |format|
-			if @rushee.update(rushee_params)
-			format.html { redirect_to @rushee, notice: 'Rushee was successfully updated.' }
-			format.json { render action: 'show', status: :created, location: @rushee }
-			else
-			format.html { render action: 'new' }
-			format.json { render json: @rushee.errors, status: :unprocessable_entity }
-			end
-	  end
-	end
-
-  def delete
-    if current_brother.is_admin 
-      id = params[:id]
-      Rushee.destroy(id)
+  def update
+    send_reminder = false
+    old_bro = @rushee.primary_contact_id
+    new_bro = params[:rushee][:primary_contact_id]
+    if old_bro != new_bro
+      send_reminder = true
     end
-    redirect_to rushees_path
+
+    respond_to do |format|
+      if @rushee.update(rushee_params)
+        format.html { redirect_to @rushee, notice: 'Rushee was successfully updated.' }
+        format.json { render action: 'show', status: :created, location: @rushee }
+
+        if send_reminder
+          # create action for whoever gets the rushee 
+          action = Action.new
+          action.brother_id = new_bro
+          action.rushee_id = @rushee.id 
+          action.date = Time.now
+          action.description = "You're a primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
+          action.save()
+
+          # notify the other guy that the rushee doesn't belong to him anymore
+          action2 = Action.new
+          action2.brother_id = old_bro
+          action2.rushee_id = @rushee.id
+          action2.date = Time.now
+          action2.description = "You are no longer primary contact for " + @rushee.firstname + " " + @rushee.lastname + "."
+          action2.save()
+        end
+
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @rushee.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    if current_brother.is_admin 
+      @rushee.destroy
+      redirect_to rushees_path
+    end
   end
 
 	private

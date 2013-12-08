@@ -1,9 +1,9 @@
 class Rushee < ActiveRecord::Base
 
 	belongs_to :fraternity
-	belongs_to :brother, :foreign_key => "primary_contact_id"
+	belongs_to :primary_contact, class_name: "Brother"
 	has_many :attendances
-	has_many :events, through: :attendances
+	has_many :events, through: :attendances, order: 'date desc'
 	has_many :actions
 	has_many :comments
 	has_many :approvals
@@ -12,8 +12,6 @@ class Rushee < ActiveRecord::Base
   validates :email, uniqueness: true, case_sensitive: false, allow_blank: true
   validates :cellphone, uniqueness: true, allow_blank: true
   validates :firstname, presence: true
-
-  attr_accessor :primary_contact_brother
 
   def self.findAllByPrimaryContactID id
     self.where :primary_contact_id => id
@@ -25,7 +23,6 @@ class Rushee < ActiveRecord::Base
 	    square: '200x200#',
 	    medium: '300x300>'
 	  }
-
 
   def assignedBrother
     if self.brother
@@ -55,4 +52,24 @@ class Rushee < ActiveRecord::Base
   def validBidStatuses
     return ["None", "Offered", "Accepted", "Rejected"]
   end
+
+  def primaryContactName
+    if primary_contact
+      primary_contact.firstname + " " + primary_contact.lastname
+    else
+      "Unassigned"
+    end
+  end
+
+  # Assumes the name is given is the full name
+  def self.findByName(name)
+    firstName = name.split()[0]
+    lastName = name.split()[1]
+    return Rushee.find_by(firstname: firstName, lastname: lastName)
+  end
+
+  def self.findByEmail(email)
+    return Rushee.find_by(email: email)
+  end
+
 end

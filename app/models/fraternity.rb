@@ -1,7 +1,7 @@
 class Fraternity < ActiveRecord::Base
 
 	has_many :brothers
-	has_many :events
+	has_many :events, order: 'date desc'
 	has_many :rushees
 
 	def verified_brothers 

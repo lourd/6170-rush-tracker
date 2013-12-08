@@ -10,7 +10,8 @@
    </div>
  </div>
 
-<!-- <table width="800px">
+<table width="800px">
+<table width="1000px">
   <tr>
     <td span="2">
       <h1 class="rushee_name"><%= "#{@rushee.firstname} #{@rushee.lastname}" %></h1>
@@ -34,10 +35,10 @@
       <table class="table">
         <tr><td>Primary Contact</td>
           <td>
-          <% if @rushee.brother %>
-            <a href="/accounts/detail/<%= @rushee.brother.id %>"><%= @rushee.assignedBrother %></a>
-          <% else %>
-            <%= @rushee.assignedBrother %>
+          <% if @rushee.primary_contact_id  %>
+            <a href="/accounts/detail/<%= @rushee.primary_contact_id %>"><%= @rushee.primaryContactName %></a>
+          <%  else %>
+            None
           <% end %>
         </td></tr>
         <tr><td>Cellphone</td><td><%= @rushee.cellphone %></td></tr>
@@ -51,6 +52,18 @@
 
       </table>
     </td>
+
+    <% if @rushee.events %>
+      <td valign="top">
+        <table class="table">
+          <tr><th>Event</th><th>Date</th></tr>
+          <% @rushee.events.each do |event| %>
+            <tr><td><%= link_to event.name, event_path(event) %></td><td><%= event.date.strftime("%d-%m-%Y") %></td></tr>
+          <% end %>
+        </table>
+      </td>
+    <% end %>
+
   </tr>
 </table>
 
@@ -60,8 +73,8 @@
 
 <% if current_brother.is_admin %>
   <h3>Administrator Controls</h3>
-  <a onclick="return confirm('Delete <%= @rushee.firstname + ' ' + @rushee.lastname %>?')" href="/rushees/delete/<%= @rushee.id %>">Delete <%= @rushee.firstname + ' ' + @rushee.lastname %></a>
-<% end %> -->
+  <%= link_to "Delete #{@rushee.firstname} #{@rushee.lastname}", @rushee, :method => :delete, :title => "Delete rushee", data: {confirm: "Delete #{@rushee.firstname} #{@rushee.lastname}?"} %>
+<% end %>
 
 <h3>Comments</h3>
 <div class="comments-container">
