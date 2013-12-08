@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 
   def new
     if !current_brother.is_admin
-      redirect_to events_path, notice: 'Only admins may create events'
+      redirect_to events_path, alert: 'Only admins may create events'
     end
 
     @event = Event.new
@@ -16,15 +16,15 @@ class EventsController < ApplicationController
 
   def create
     if !current_brother.is_admin
-      redirect_to events_path, notice: 'Only admins may create events'
+      redirect_to events_path, alert: 'Only admins may create events'
     end
 
     @event = Event.new(event_params)
 
     if @event.save(event_params)
-      redirect_to events_path, notice: 'Event was succesfully created'
+      redirect_to events_path, alert: 'Event was succesfully created'
     else
-      redirect_to events_path, notice: 'Event was not succesfully created'
+      redirect_to events_path, alert: 'Event was not succesfully created'
     end
   end
 
@@ -39,10 +39,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:event_id])
     rushee = Rushee.find(params[:attendance][:rushee_id])
     @event.addRushee(rushee)
-    redirect_to event_path(@event), notice: 'Rushee was added'
+    redirect_to event_path(@event), alert: 'Rushee was added'
     
     rescue ActiveRecord::RecordNotFound
-      redirect_to event_path(@event), notice: 'No Rushee was specified'
+      redirect_to event_path(@event), alert: 'No Rushee was specified'
 
   end
 
