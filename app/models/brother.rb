@@ -4,7 +4,7 @@ class Brother < ActiveRecord::Base
 	has_many :action_brothers
 	has_many :actions, through: :action_brothers
 	has_many :comments
-	has_many :approvals
+	has_many :approvals, dependent: :destroy
 	has_many :rushees, foreign_key: :primary_contact_id
 
 
@@ -32,8 +32,7 @@ class Brother < ActiveRecord::Base
     bro.save() 
   end
 
-
- ##Methods to modificed a Rushee's associated Approvals. 
+ ##Methods to modified a Rushee's associated Approvals. 
 
   # Verifies an approval exists between a brother and the matching rushee
   # If there is not one, the method creates new approval
@@ -41,6 +40,10 @@ class Brother < ActiveRecord::Base
     if !self.approvals.find_by(rushee: rushee)
       self.approvals.create(rushee: rushee)
     end
+  end
+
+  def full_name
+    self.firstname + " " + self.lastname
   end
 
   # Mark Rushee as Met by Brother

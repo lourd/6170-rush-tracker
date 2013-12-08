@@ -3,7 +3,7 @@
   <%= render 'shared/event_error_messages' %>
   <%= f.hidden_field :fraternity_id, :value => current_brother.fraternity_id %>
   <%= f.text_field :name, :class => 'form-control', :placeholder => "Name of Event" %>
-  <%= f.date_field :date, :class => 'form-control' %>
+  <%= f.date_field :date, :class => 'form-control', :placeholder => "dd/mm/yyyy" %>
 
   <br>
   

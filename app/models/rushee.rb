@@ -2,11 +2,11 @@ class Rushee < ActiveRecord::Base
 
 	belongs_to :fraternity
 	belongs_to :primary_contact, class_name: "Brother"
-	has_many :attendances
+	has_many :attendances, dependent: :destroy
 	has_many :events, through: :attendances, order: 'date desc'
-	has_many :actions
-	has_many :comments
-	has_many :approvals
+	has_many :actions, dependent: :destroy
+	has_many :comments, dependent: :destroy
+	has_many :approvals, dependent: :destroy
 
 
   validates :email, uniqueness: true, case_sensitive: false, allow_blank: true
@@ -95,4 +95,9 @@ class Rushee < ActiveRecord::Base
   def upVoteCount
     self.approvals.where(vote: true).count
   end
+
+  def full_name
+    self.firstname + " " + self.lastname
+  end
+
 end
