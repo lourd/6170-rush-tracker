@@ -7,8 +7,9 @@ class RusheesController < ApplicationController
 
 	def index
   		@rushees = current_brother.fraternity.rushees
-                @cols = 3
-                @actions = Action.where( brother_id: current_brother.id ).order(:created_at)
+      # @approvals = current_brother.approvals
+      @actions = Action.where( brother_id: current_brother.id ).order(:created_at)
+      @max_feed = 5  
 
 	end
 

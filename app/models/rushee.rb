@@ -24,6 +24,18 @@ class Rushee < ActiveRecord::Base
 	    medium: '300x300>'
 	  }
 
+  def assignedBrother
+    if self.brother
+      brother.firstname + " "+ brother.lastname
+    else
+      "Unassigned"
+    end
+  end
+
+  def brother_approval b_id
+    self.approvals.find_by brother_id: b_id
+  end
+
   def validActionSelectStatuses
     return [["None", "None"], ["Stay the Course", "Stay the Course"], 
       ["Push Harder", "Push Harder"], ["Repudiate", "Repudiate"]]

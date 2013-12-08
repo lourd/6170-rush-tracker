@@ -1,0 +1,25 @@
+<%= form_for @action, as: :action, :html => {:class => "form-horizontal"}, :url => url_for(:controller => 'actions', :action => 'create') do |f| %>
+
+  Brother 
+  <p>
+    <%= f.collection_select(:brother_id, Brother.findAllByFraternityID(current_brother.fraternity.id), :id, :firstname, include_blank: true) %>
+  </p>
+
+
+  Rushee 
+  <p>
+    <%= f.collection_select(:rushee_id, current_brother.fraternity.rushees, :id, :firstname, include_blank: true) %>
+  </p>
+
+
+  Description
+  <p>
+    <%= f.text_area :description %>
+  </p>
+ 
+  
+  
+    <%= f.submit %>
+ 
+
+<% end %> 

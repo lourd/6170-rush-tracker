@@ -2,9 +2,6 @@
 // All this logic will automatically be available in application.js.
 // You can no longer use CoffeeScript in this file: http://coffeescript.org/
 
-var ready = function() {
-};
-
 var slideShow = function() {
   var currentID = 0;
 
@@ -81,5 +78,12 @@ var updatePrimaryContactName = function(id) {
 }
 
 //Listeners for Normal Page Loads and Link_Tos
-$(document).ready(ready);
-$(document).on('page:load', ready);
+// $(document).on('page:load', ready);
+$(document).ready(function(){
+
+  // Changes color of buttons on rushee index overlay, indiciating true or false
+  $(".overlay-btn").click(function(){
+    $(this).toggleClass("btn-true");
+  });
+});
+
