@@ -13,5 +13,18 @@ class Event < ActiveRecord::Base
 
     def addRushee(rushee)
       Attendance.create(event_id: self.id, rushee_id: rushee.id)
-    end   
+    end
+
+    def nonAttendingRushees
+      attendingRushees = Array.new
+      self.fraternity.rushees.each do |rushee|
+        attendingRushees.push(rushee)
+      end
+      self.attendances.each do |attendance|
+        rushee = Rushee.find(attendance.rushee_id)
+        attendingRushees.delete(rushee)
+      end
+      return attendingRushees
+    end
+
 end

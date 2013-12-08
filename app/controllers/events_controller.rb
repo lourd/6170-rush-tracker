@@ -31,29 +31,19 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @rushees = @event.rushees
+    @attendance = Attendance.new
   end
 
   # Add a given rushee by name or email
   def addRushee
     @event = Event.find(params[:event_id])
+    rushee = Rushee.find(params[:attendance][:rushee_id])
+    @event.addRushee(rushee)
+    redirect_to event_path(@event), notice: 'Rushee was added'
+    
+    rescue ActiveRecord::RecordNotFound
+      redirect_to event_path(@event), notice: 'No Rushee was specified'
 
-    rushee = params[:rushee]
-
-    if Rushee.findByEmail(rushee)
-      attendingRushee = Rushee.findByEmail(rushee)
-      @event.addRushee(attendingRushee)
-      redirect_to event_path(@event), notice: 'Rushee was added'
-      return
-
-    elsif Rushee.findByName(rushee)
-      attendingRushee = Rushee.findByName(rushee)
-      @event.addRushee(attendingRushee)
-      redirect_to event_path(@event), notice: 'Rushee was added'
-      return
-
-    else
-      redirect_to event_path(@event), notice: 'Rushee was not found'
-    end
   end
 
   def edit
