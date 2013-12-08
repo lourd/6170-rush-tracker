@@ -2,11 +2,82 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1.rushee_name {
+ul.rushees {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.rushee-outer {
+	position: relative;
+	height: 200px;
+	width: 200px;
+	float: left;
+	border-radius: 1px;
+	padding: 10px;
+	margin: 10px;
+	border: solid 1px #DDD;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 4px 0px;
+	z-index: 0;
+}
+
+.rushee-hover.hideable {
+	text-align: center;
+	position: absolute;
+	height: 180px;
+	width: 180px;
+	color: black;
+	background-color: black;
+	opacity: 0;
+	transition:opacity .15s linear;
+	z-index: 1;
+  	/*transition: visibility 0.5s;*/
+}
+
+/*The div overlay for the rushees pictures*/
+.rushee-hover:hover {
+	opacity: 0.5;
+}
+
+.overlay-btn {
+	color: white;
+	z-index: 2;
+	transition: opacity .15s linear;
+	&:hover {
+		opacity: 0.5;
+	}
+
+}
+
+.btn-true {
+	color: green;
+}
+
+li img {
+	position: absolute;
+	height: 180px;
+	width: 180px;
+	border: 1px solid #C9CCD3;
+	padding: 0px;
+	border-radius: 1px;
+	overflow: hidden;
+}
+
+.rushee-name {
 	font-size: 40px;
 	margin-top: 0px;
 	margin-bottom: 5px;
+	color: white;
+	transition: color .15s linear;
+	&:hover {
+		color: gray;
+	}
 }
+
+a:hover {
+	text-decoration: none;
+}
+
 h4.status {
 	color: gray;
 	font-size: 14px;

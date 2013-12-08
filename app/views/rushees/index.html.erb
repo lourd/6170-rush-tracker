@@ -1,57 +1,30 @@
-<h1>Rushees Index of <%= current_brother.fraternity.name %></h1>
-<ul>
-  <li><a href="/rushees/new">Add Rushee</a></li>
+<ul class="rushees">
+    <% @rushees.each do |rushee| %>
+      <li>
+        <div class="rushee-outer">
+          <%= image_tag(rushee.picture.url(:medium), class: "rushee-image") %>
+            <div class="rushee-hover hideable">
+              <%= link_to rushee_path(rushee) do %>
+                <p class="rushee-name"><%= "#{rushee.firstname} #{rushee.lastname}" %></p>
+              <% end %>
+              <i class="fa fa-check fa-2x overlay-btn"></i>
+              <i class="fa fa-arrow-up fa-2x overlay-btn"></i>
+            </div>
+        </div>
+      </li>
+    <% end %>
 </ul>
 
 <table border="0">
   <tr>
-    <td>
-<table class="table">
-
-  <% i = 0 %>
-  <% while i < @rushees.length %>
-    <tr>
-      <% count = 0 %>
-      <% for col in 0...@cols %>
-        <td>
-          <% if @rushees[i+col] != nil %>
-            <% rushee = @rushees[i+col] %>
-            <% if rushee.picture? %>
-              <div id="picture-holder2">
-                <a href="/rushees/<%= rushee.id %>">
-                  <%= image_tag rushee.picture.url(:medium) %>
-                </a>
-              </div>
-            <% else %>
-              <div id="picture-holder">
-                <a href="/rushees/<%= rushee.id %>">
-                  <%= image_tag rushee.picture.url(:medium) %>
-                </a>
-              </div>
-            <% end %>
-        
-            <h4><%= link_to "#{rushee.firstname} #{rushee.lastname}", rushee_path(rushee) %></h4>
-            <ul>
-              <% if rushee.hometown? %><li>From <%= rushee.hometown %></li><% end %>
-              <% if rushee.dorm? %><li>Lives in <%= rushee.dorm %></li><% end %>
-              <% if rushee.sports? %><li>Sports: <%= rushee.sports %></li><% end %>
-            </ul>
-            
-            <% count = count + 1 %>
-          <% end %>
-        </td>
-      <% end %>
-    </tr>
-    <% i = i + count %>
-  <% end %> 
-
-</table>
-</td>
-<td valign="top">
-  <h3>Rush Action Feed</h3>
-  <% @actions.reverse_each do |action| %>
-    <p><%= action.description %> (<%= time_ago_in_words(action.created_at) %> ago)</p>
-  <% end %>
-</td>
+  <td valign="top">
+    <h3>Rush Action Feed</h3>
+    <% loopd = 0 %>
+    <% @actions.reverse_each do |action| %>
+      <p><%= link_to action.description, rushee_path(action.rushee_id) %> (<%= time_ago_in_words(action.created_at) %> ago)</p>
+      <% loopd = loopd + 1 %>
+      <% break if loopd >= @max_feed %>
+    <% end %>
+  </td>
 </tr>
 </table>
