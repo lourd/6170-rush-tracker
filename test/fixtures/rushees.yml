@@ -1,35 +1,52 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  firstname: MyString
-  lastname: MyString
-  email: MyString
+rusheeA:
+  firstname: Test
+  lastname: Rushee
+  email: test@mit.edu
   cellphone: MyString
   facebook_url: MyString
   twitter_url: MyString
-  profile_picture_url: MyString
   dorm: MyString
   room_number: MyString
   hometown: MyString
   sports: MyString
   frats_rushing: MyString
-  primary_contact_id: 1
+  primary_contact_id:
   action_status: MyString
   bid_status: MyString
+  fraternity_id: 1
 
-two:
-  firstname: MyString
-  lastname: MyString
+rusheeB:
+  firstname: Another
+  lastname: Rushee
   email: MyString
   cellphone: MyString
   facebook_url: MyString
   twitter_url: MyString
-  profile_picture_url: MyString
   dorm: MyString
   room_number: MyString
   hometown: MyString
   sports: MyString
   frats_rushing: MyString
-  primary_contact_id: 1
+  primary_contact_id:
   action_status: MyString
   bid_status: MyString
+  fraternity_id: 1
+
+rusheeC:
+  firstname: Different
+  lastname: Frat
+  email: MyString
+  cellphone: MyString
+  facebook_url: MyString
+  twitter_url: MyString
+  dorm: MyString
+  room_number: MyString
+  hometown: MyString
+  sports: MyString
+  frats_rushing: MyString
+  primary_contact_id:
+  action_status: MyString
+  bid_status: MyString
+  fraternity_id: 2

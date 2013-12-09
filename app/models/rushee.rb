@@ -55,7 +55,7 @@ class Rushee < ActiveRecord::Base
 
   def primaryContactName
     if primary_contact
-      primary_contact.firstname + " " + primary_contact.lastname
+      primary_contact.full_name
     else
       "Unassigned"
     end

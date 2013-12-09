@@ -4,8 +4,23 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+brotherA: 
+  firstname: Billy
+  lastname: Bob
+  email: bob@mit.edu
+  fraternity_id: 1
+  is_verified: true
+
+brotherB: 
+  firstname: Brosef
+  lastname: Bro
+  email: bro@mit.edu
+  fraternity_id: 1
+  is_verified: false
+
+brotherC: 
+  firstname: Different 
+  lastname: FratBro
+  email: diff@mit.edu
+  fraternity_id: 2
+  is_verified: true
