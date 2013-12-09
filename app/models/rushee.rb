@@ -56,7 +56,7 @@ class Rushee < ActiveRecord::Base
   ##Methods to Get Full Names
   def primaryContactName
     if primary_contact
-      primary_contact.firstname + " " + primary_contact.lastname
+      primary_contact.full_name
     else
       "Unassigned"
     end

@@ -1,9 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+eventA:
+  name: Blowout
   date: 2013-11-12
+  fraternity_id: 1
 
-two:
-  name: MyString
+eventB:
+  name: Crazy Blowout
   date: 2013-11-12
+  fraternity_id: 1
+
+eventC:
+  name: Even crazier
+  date: 2013-11-12
+  fraternity_id: 2
