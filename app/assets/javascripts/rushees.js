@@ -1,8 +1,4 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-// You can no longer use CoffeeScript in this file: http://coffeescript.org/
-
-var slideShow = function() {
+var slideeShow = function() {
   var currentID = 0;
 
   alert("Press ESC to return to main site. Press F11 to view FullScreen!");
@@ -43,6 +39,7 @@ var slideShow = function() {
   $("#nextSlide").click(function(e) {
     e.preventDefault();    
     loadBrother(currentID + 1);
+    console.log("wtf");
   });
 };
 
@@ -75,21 +72,33 @@ var updatePrimaryContactName = function(id) {
       },
       dataType: "json"
     });
-}
+};
 
 var clickUpVote = function() {
-}
+  console.log("up");
+};
 
 var clickMet = function() {
-}
+  console.log("left");
+};
 
-//Listeners for Normal Page Loads and Link_Tos
-// $(document).on('page:load', ready);
-$(document).ready(function(){
 
+var ready = function() {
   // Changes color of buttons on rushee index overlay, indiciating true or false
   $(".overlay-btn").click(function(){
     $(this).toggleClass("btn-true");
   });
+
+  $(".fa-check").click(function(e){
+    console.log("I just met " + $(this).attr("data-rushee-id"));
+  });
+
+  $(".fa-arrow-up").click(function(e){
+    console.log("I just voted " + $(this).attr("data-rushee-id"));
 });
+
+//Listeners for Normal Page Loads and Link_Tos
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
 

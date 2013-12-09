@@ -8,8 +8,8 @@
               <%= link_to rushee_path(rushee) do %>
                 <p class="rushee-name"><%= "#{rushee.firstname} #{rushee.lastname}" %></p>
               <% end %>
-              <i class="fa fa-check fa-2x overlay-btn"></i>
-              <i class="fa fa-arrow-up fa-2x overlay-btn"></i>
+              <i class="fa fa-check fa-2x overlay-btn" data-rushee-id=<%= rushee.id %> ></i>
+              <i class="fa fa-arrow-up fa-2x overlay-btn" data-rushee-id=<%= rushee.id %> ></i>
             </div>
         </div>
       </li>
