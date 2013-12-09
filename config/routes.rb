@@ -6,11 +6,19 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
       post :removeVote
       post :meet
       post :unmeet
+      get  :getApproval
     end
   end
   resources :actions
   resources :events
 
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
+  # You can have the root of your site routed with "root"
+  root :to => "rushees#index"
+  
+  #Named Routes
   post "rushees/comment" => "rushees#comment"
   post "events/addRushee" => "events#addRushee"
 
@@ -23,13 +31,6 @@ Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   devise_for :brothers
 
   match '/presentation', to: 'rushees#present', via: 'get'
-
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root :to => "rushees#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

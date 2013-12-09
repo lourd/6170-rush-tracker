@@ -3,12 +3,17 @@ class RusheesController < ApplicationController
   layout 'application', except: :present
 	before_filter :authenticate_brother!
   before_filter :is_verified!
-  before_action :set_rushee, only: [:show, :edit, :update, :destroy, :upVote, :removeVote, :meet, :unmeet]
+  before_action :set_rushee, only: [:show, :edit, :update, :destroy, :upVote, :removeVote, :meet, :unmeet, :getApproval]
+    #except: [:index, :new, :present, :create]
 
 	def index
     @rushees = current_brother.fraternity.rushees
     @actions = Action.where( brother_id: current_brother.id ).order(:created_at)
     @max_feed = 5  
+	end
+
+	def show
+		@comments = @rushee.comments
 	end
 
 	def new
@@ -41,34 +46,6 @@ class RusheesController < ApplicationController
 
 	def delete
 	end
-  
-  def comment
-    comment = Comment.new
-    comment.rushee_id = params[:id]
-    comment.brother_id = current_brother.id
-    comment.text = params[:text]
-    comment.save
-    
-    redirect_to "/rushees/"+comment.rushee_id.to_s
-  end
-
-  def commentDestroy
-  	@comment = Comment.find(params[:comment_id])
-  	@comment.destroy
-  end
-
-
-	def show
-		@comments = @rushee.comments
-	end
-
-  def present
-    @rushees = current_brother.fraternity.rushees
-    respond_to do |format|
-      format.html { render :layout => false }
-      format.json { render json: @rushees }
-    end
-  end
 
   def update
     send_reminder = false
@@ -114,6 +91,31 @@ class RusheesController < ApplicationController
       redirect_to rushees_path
     end
   end
+  
+  # Comment Related Methods
+  def comment
+    comment = Comment.new
+    comment.rushee_id = params[:id]
+    comment.brother_id = current_brother.id
+    comment.text = params[:text]
+    comment.save
+    
+    redirect_to "/rushees/"+comment.rushee_id.to_s
+  end
+
+  def commentDestroy
+  	@comment = Comment.find(params[:comment_id])
+  	@comment.destroy
+  end
+
+  #Presentation View
+  def present
+    @rushees = current_brother.fraternity.rushees
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.json { render json: @rushees }
+    end
+  end
 
   #Actions to Change Vote and Met Brother Counts
   def upVote
@@ -134,6 +136,16 @@ class RusheesController < ApplicationController
   def unmeet
     current_brother.unmeet(@rushee)
     redirect_to :back
+  end
+
+  def getApproval
+    if current_brother.approvals.where(rushee: @rushee).exists?
+      @approval = current_brother.approvals.where(rushee: @rushee)  
+    else
+      current_brother.unmeet(@rushee)
+      @approval = current_brother.approvals.where(rushee: @rushee)
+    end
+    render json: @approval
   end
 
   #Helper Functions
@@ -160,5 +172,4 @@ class RusheesController < ApplicationController
       return
     end
   end
-
 end

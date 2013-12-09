@@ -72,7 +72,7 @@ var updatePage = function(rushee, requestedID) {
   $("#slideBidStatus").html(rushee.bid_status);
 };
 
-//AJAX Call to get Primary Contact's name from Rails server
+//Ajax Call to get Primary Contact's name from Rails server
 var updatePrimaryContactName = function(id) {
   $.ajax({
       url: "/accounts/detail/" + id,
@@ -83,27 +83,97 @@ var updatePrimaryContactName = function(id) {
     });
 };
 
-var clickUpVote = function() {
-  console.log("up");
-};
 
-var clickMet = function() {
-  console.log("meet");
-};
-
-var ready = function() {
-  // Changes color of buttons on rushee index overlay, indiciating true or false
-  $(".overlay-btn").click(function(){
-    $(this).toggleClass("btn-true");
+//Functions to Respond to Icon Presses
+var clickVote = function(id, target) {
+  $.ajax({
+    url: "/rushees/" + id + "/getApproval",
+    method: "get",
+    success: function(data) {
+      if (data[0].vote) {
+        removeVote(id);
+        target.removeClass("btn-true"); 
+      }
+      else {
+        upVote(id);
+        target.addClass("btn-true");  
+      }
+    }
   });
+};
 
+var clickMeet = function(id, target) {
+  $.ajax({
+    url: "/rushees/" + id + "/getApproval",
+    method: "get",
+    success: function(data) {
+      if (data[0].met) {
+        unmeet(id);
+        target.removeClass("btn-true"); 
+      }
+      else {
+        meet(id);
+        target.addClass("btn-true"); 
+      }
+    }
+  });
+};
+
+
+//Send Ajax requests for specific functions
+var upVote = function(id) {
+  $.ajax({
+      url: "/rushees/" + id +"/upVote",
+      method: "post",
+      success: function(data) {}
+  });
+};
+
+var removeVote = function(id) {
+  $.ajax({
+      url: "/rushees/" + id +"/removeVote",
+      method: "post",
+      success: function(data) {}
+  });
+};
+
+var meet = function(id) {
+  $.ajax({
+      url: "/rushees/" + id +"/meet",
+      method: "post",
+      success: function(data) {}
+  });
+};
+
+var unmeet = function(id) {
+  $.ajax({
+      url: "/rushees/" + id +"/unmeet",
+      method: "post",
+      success: function(data) {}
+  });
+};
+
+var getApprovalStatus = function(id) {
+  $.ajax({
+    url: "/rushees/" + id + "/getApproval",
+    method: "get",
+    success: function(data) { console.log(data); }
+  });
+}
+
+
+//On Page Ready, Add Click Handlers for Rushee Index
+var ready = function() {
   $(".fa-check").click(function(e){
-    console.log("I just met " + $(this).attr("data-rushee-id"));
+    var id = $(this).attr("data-rushee-id");
+    clickMeet(id, $(this));
   });
 
   $(".fa-arrow-up").click(function(e){
-    console.log("I just voted " + $(this).attr("data-rushee-id"));
+    var id = $(this).attr("data-rushee-id");
+    clickVote(id, $(this));
   });
+
 };
 
 //Listeners for Normal Page Loads and Link_Tos
