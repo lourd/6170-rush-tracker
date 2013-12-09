@@ -11,11 +11,12 @@ class ActionsController < ApplicationController
   def create
     @action = Action.new(action_params)
     @action.save(action_params)
+    @action = Action.new
   end
 
   private 
   def action_params
-    params.require(:action).permit(:rushee_id, :brother_id, :description)
+    params.require(:actionr).permit(:rushee_id, :brother_id, :description)
   end
 
 
