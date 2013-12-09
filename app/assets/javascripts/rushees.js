@@ -4,8 +4,6 @@
 
 var slideShow = function() {
   var currentID = 0;
-
-  alert("Press ESC to return to main site. Press F11 to view FullScreen!");
   
   //On escape press, redirect to Rushees Index
   $(document).keyup(function(e) {
@@ -22,10 +20,10 @@ var slideShow = function() {
       success: function(data) { 
         var rusheeCount = data.length;
         if (requestedID >= rusheeCount) {
-          alert("End of the show");
+          //alert("End of the show");
         }
         else if (requestedID < 0) {
-          alert("No previous slides");
+          //alert("No previous slides");
         }      
         else {
           var rushee = data[requestedID];
@@ -42,12 +40,25 @@ var slideShow = function() {
     e.preventDefault();
     loadBrother(currentID - 1);
   });
-  
+
   //On "Next" Press Load the Next Slide
   $("#nextSlide").click(function(e) {
     e.preventDefault();    
     loadBrother(currentID + 1);
   });
+
+  //Go in the Slide Direction of the Key Press
+  $(document).keydown(function(e){
+    if (e.keyCode == 37 || e.keyCode == 38) { 
+      e.preventDefault();
+      loadBrother(currentID - 1);
+    }
+    else if (e.keyCode == 39 || e.keyCode == 40) { 
+      e.preventDefault();
+      loadBrother(currentID + 1);
+    }
+  });
+  
 };
 
 //Function to Load All the Information on a Slide (Given a rushee json)
