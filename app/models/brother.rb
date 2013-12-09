@@ -3,7 +3,7 @@ class Brother < ActiveRecord::Base
   belongs_to  :fraternity
 	has_many :action_brothers
 	has_many :actions, through: :action_brothers
-	has_many :comments
+	has_many :comments, dependent: :destroy
 	has_many :approvals, dependent: :destroy
 	has_many :rushees, foreign_key: :primary_contact_id
 

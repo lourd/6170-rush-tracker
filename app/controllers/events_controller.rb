@@ -47,9 +47,30 @@ class EventsController < ApplicationController
   end
 
   def edit
+    if !current_brother.is_admin
+      redirect_to events_path, alert: "Only admins may edit events"
+      return
+    else
+      @event = Event.find(params[:id])
+    end
   end
 
-  def delete
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, alert: "Event Information Updated"
+    else
+      redirect_to @event, alert: "Event Information was not Updated"
+    end
+
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    if current_brother.is_admin
+      @event.destroy
+      redirect_to events_path
+    end
   end
   
   private 

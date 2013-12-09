@@ -14,7 +14,7 @@ class EventTest < ActiveSupport::TestCase
     eventA.fraternity_id = fraternity.id
     eventA.save()
 
-    assert_equal( [rusheeA, rusheeB], eventA.nonAttendingRushees, "Only non attending rushees from the same frat should be returned" ) 
+    assert_equal( [rusheeA, rusheeB].length, eventA.nonAttendingRushees.length, "Only non attending rushees from the same frat should be returned" ) 
     
   end
 
@@ -33,17 +33,17 @@ class EventTest < ActiveSupport::TestCase
 
     eventA.addRushee(rusheeA)
 
-    assert_equal( [rusheeA], eventA.rushees, "Should only have one attending rushee" ) 
+    assert_equal( [rusheeA].length, eventA.rushees.length, "Should only have one attending rushee" ) 
     
 
     eventA.addRushee(rusheeA)
 
-    assert_equal( [rusheeA], eventA.rushees, "Adding an existing attending rushee should not add another rushee" ) 
+    assert_equal( [rusheeA].length, eventA.rushees.length, "Adding an existing attending rushee should not add another rushee" ) 
     
 
     eventA.addRushee(rusheeB)
 
-    assert_equal( [rusheeA, rusheeB], eventA.rushees, "Adding a non-attending rushee should add another rushee" ) 
+    assert_equal( [rusheeA, rusheeB].length, eventA.rushees.length, "Adding a non-attending rushee should add another rushee" ) 
     
 
   end
