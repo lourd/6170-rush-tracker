@@ -55,15 +55,31 @@
   </tr>
 </table>
 
-
-<br/><p> Social Media </p>
-<%# url %> 
-<%= image_tag "header.png" %>
-<br/>
-
+<p>
+  <table>
+    <tr>
+      <td> Met <%= @rushee.metBrotherCount %> Brothers </td>
+      <td> 
+        <%= button_to "Met", meet_rushee_path, method: "post", class: "btn btn-success" %>        
+      </td>
+      <td>
+        <%= button_to "Haven't Met", unmeet_rushee_path, method: "post", class: "btn btn-danger" %>   
+      </td>
+    </tr>
+    <tr>
+      <td> Has <%= @rushee.upVoteCount %> Votes </td>
+      <td> 
+        <%= button_to "Upvote", upVote_rushee_path, method: "post", class: "btn btn-success" %>        
+      </td>
+      <td>
+        <%= button_to "Remove Vote", removeVote_rushee_path, method: "post", class: "btn btn-danger" %>   
+      </td>
+    </tr>   
+  </table>
+</p>
 
 <h3>Edit Information</h3>
-<%= link_to 'Edit ' + @rushee.firstname + ' ' + @rushee.lastname, edit_rushee_path(@rushee) %>
+<%= link_to 'Edit ' + @rushee.full_name, edit_rushee_path(@rushee) %>
 
 <% if current_brother.is_admin %>
   <h3>Administrator Controls</h3>

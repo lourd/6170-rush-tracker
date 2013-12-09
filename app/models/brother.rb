@@ -52,7 +52,7 @@ class Brother < ActiveRecord::Base
     self.approvals.find_by(rushee: rushee).update_attribute("met", true)
   end
 
-  def unmeet(brother)
+  def unmeet(rushee)
     verifyApproval(rushee)    
     self.approvals.find_by(rushee: rushee).update_attribute("met", false)
   end
@@ -66,5 +66,13 @@ class Brother < ActiveRecord::Base
   def removeVote(rushee)
     verifyApproval(rushee)    
     self.approvals.find_by(rushee: rushee).update_attribute("vote", false)
+  end
+
+  def hasMet(rushee)
+    self.approvals.where(rushee: rushee, met: true).exists?
+  end
+
+  def hasVotedFor(rushee)
+    self.approvals.where(rushee: rushee, vote: true).exists?
   end
 end

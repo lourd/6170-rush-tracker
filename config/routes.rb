@@ -1,6 +1,13 @@
 Djsmiley0LourdBshaibuMattyhkFinal::Application.routes.draw do
   
-  resources :rushees
+  resources :rushees do
+    member do
+      post :upVote
+      post :removeVote
+      post :meet
+      post :unmeet
+    end
+  end
   resources :actions
   resources :events
 

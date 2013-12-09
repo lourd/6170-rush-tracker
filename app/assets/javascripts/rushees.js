@@ -6,7 +6,8 @@ var slideShow = function() {
   var currentID = 0;
 
   alert("Press ESC to return to main site. Press F11 to view FullScreen!");
-
+  
+  //On escape press, redirect to Rushees Index
   $(document).keyup(function(e) {
     //Handle Escape Key Press  
     if (e.keyCode == 27) { 
@@ -14,6 +15,7 @@ var slideShow = function() {
     }
   });
 
+  //Function to load a brother with the requested ID
   var loadBrother = function(requestedID) {
     $.ajax({
       url: "/presentation",
@@ -35,17 +37,20 @@ var slideShow = function() {
     });
   };
 
+  //On "Back" Press Load the Previous Slide
   $("#lastSlide").click(function(e) {
     e.preventDefault();
     loadBrother(currentID - 1);
   });
   
+  //On "Next" Press Load the Next Slide
   $("#nextSlide").click(function(e) {
     e.preventDefault();    
     loadBrother(currentID + 1);
   });
 };
 
+//Function to Load All the Information on a Slide (Given a rushee json)
 var updatePage = function(rushee, requestedID) {
   $("#informationCell").attr("data-id", requestedID);
   $("#informationCell").attr("data-rails-id", rushee.id);
@@ -67,6 +72,7 @@ var updatePage = function(rushee, requestedID) {
   $("#slideBidStatus").html(rushee.bid_status);
 };
 
+//AJAX Call to get Primary Contact's name from Rails server
 var updatePrimaryContactName = function(id) {
   $.ajax({
       url: "/accounts/detail/" + id,

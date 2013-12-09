@@ -7,7 +7,6 @@ class RusheesController < ApplicationController
 
 	def index
     @rushees = current_brother.fraternity.rushees
-    # @approvals = current_brother.approvals
     @actions = Action.where( brother_id: current_brother.id ).order(:created_at)
     @max_feed = 5  
 	end
@@ -116,21 +115,43 @@ class RusheesController < ApplicationController
     end
   end
 
+  #Actions to Change Vote and Met Brother Counts
+  def upVote
+    current_brother.upVote(@rushee)
+    redirect_to :back
+  end
+
+  def removeVote
+    current_brother.removeVote(@rushee)
+    redirect_to :back
+  end
+
+  def meet
+    current_brother.meet(@rushee)
+    redirect_to :back
+  end
+
+  def unmeet
+    current_brother.unmeet(@rushee)
+    redirect_to :back
+  end
+
+  #Helper Functions
+
 	private
 	# Never trust parameters from the scary internet, only allow the white list through.
-	  def rushee_params
-	    params.require(:rushee).permit(:firstname, :lastname, :email, :cellphone, 
-	    	:facebook_url, :twitter_url, :picture, :dorm, :room_number, 
-	    	:hometown, :sports, :frats_rushing, :primary_contact_id, :fraternity_id,
-	    	:action_status, :bid_status)
-	  end
+  def rushee_params
+    params.require(:rushee).permit(:firstname, :lastname, :email, :cellphone, 
+    	:facebook_url, :twitter_url, :picture, :dorm, :room_number, 
+    	:hometown, :sports, :frats_rushing, :primary_contact_id, :fraternity_id,
+    	:action_status, :bid_status)
+  end
 
-	    # Use callbacks to share common setup or constraints between actions.
-	  def set_rushee
-	    @rushee = Rushee.find(params[:id])
-	  end
-    
-      
+	# Use callbacks to share common setup or constraints between actions.
+	def set_rushee
+	  @rushee = Rushee.find(params[:id])
+	end
+         
   def is_verified!
     if !current_brother.is_verified    
       sign_out current_brother
@@ -138,31 +159,6 @@ class RusheesController < ApplicationController
       redirect_to :root
       return
     end
-  end
-
-  #Actions to Change Vote and Met Brother Counts
-  def upVote
-    current_brother.upVote(@rushee)
-  end
-
-  def removeVote
-    current_brother.removeVote(@rushee)
-  end
-
-  def meet
-    current_brother.meet(@rushee)
-  end
-
-  def unmeet
-    current_brother.unmeet(@rushee)
-  end
-
-  #Helper Functions
-
-  private
-
-  def set_rushee
-    @rushee = Rushee.find(params[:id])
   end
 
 end
