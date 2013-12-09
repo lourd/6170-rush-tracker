@@ -1,6 +1,6 @@
 <%= form_tag(action: :addRushee, method: "post", class: "form-horizontal") do %>
   <%= hidden_field_tag :event_id, @event.id %>
-  <%= label_tag :attendance, "Add Rushee: " %> 
+  <%= label_tag :attendance, "Rushee: " %> 
   <%= collection_select(:attendance, :rushee_id, @event.nonAttendingRushees, :id, :full_name, include_blank: true) %>
 <br>
 <br>

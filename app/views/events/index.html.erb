@@ -5,12 +5,6 @@
 
 <h1>Your Frat's Events</h1>
 
-<% if current_brother.is_admin %>
-  <ul>
-    <%= link_to 'Create New Event', new_event_path %> 
-  </ul>
-<% end %>
-
 <% if @events.length > 0 %>
   <table class ="table">
     <tr>
@@ -19,10 +13,20 @@
       <tr>
         <td><%= link_to "#{event.name}", event_path(event) %></td>
         <td><%= event.date.strftime("%d-%m-%Y") %></td>
+        <% if current_brother.is_admin %>
+          <td><%= link_to 'Edit', edit_event_path(event) %></td>
+          <td><%= link_to 'Delete', event, :method => :delete, :title => "Delete Event", data: {confirm: "Delete Event?"} %></td>
+        <% end %>
       </tr>
 
     <% end %>
   </table>
 <% else %>
   <p>Your frat doesn't have any events.</p>
+<% end %>
+
+<% if current_brother.is_admin %>
+  <ul>
+    <%= link_to 'Create New Event', new_event_path %> 
+  </ul>
 <% end %>
